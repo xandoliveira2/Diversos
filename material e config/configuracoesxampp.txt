@@ -1,0 +1,13 @@
+//php.ini
+//upload_max_filesize
+//post_max_size
+//memory_limit
+ate aqui bem comum e já atualizado suficiente para não se preocupar muito
+//max_execution_time
+
+
+agora sql:
+//my.ini ou my.cnf
+//max_allowed_packet
+
+não esquecer de salvar
