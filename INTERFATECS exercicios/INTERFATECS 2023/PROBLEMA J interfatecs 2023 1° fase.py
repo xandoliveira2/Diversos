@@ -1,5 +1,4 @@
 #palindromo perdido
-
 def main():
     texto = input().lower()
     textoformatado = str()
@@ -45,7 +44,9 @@ def main1():
                 palavranormalizada+='e'
             elif letra in 'íìî':
                 palavranormalizada+='i'
-            elif letra in ' -_=+!?",\'':
+            elif letra in '.' and frase[-1]=='.':
+                pass
+            elif letra in ' ':
                 pass
             elif letra in 'óòôõ' :
                 palavranormalizada+='o'
@@ -53,13 +54,6 @@ def main1():
                 palavranormalizada+='u'
             else:
                 palavranormalizada+=letra
-        formatacao = list(palavranormalizada)
-        try:
-            if formatacao[-1]== '.':
-                formatacao.pop(-1)
-        except:
-            pass
-        palavranormalizada = ''.join(formatacao)
         listanormalizada.append(palavranormalizada)
     listareversa = list()
     for frase in listanormalizada:
@@ -68,7 +62,6 @@ def main1():
             palavrareversa.insert(0,letra)
         listareversa.append(''.join(palavrareversa))
     for i in range(0,len(listanormalizada)):
-        
         if listanormalizada[i] == listareversa[i]:
             print("Parabens, voce encontrou o Palindromo perdido!")
         else:

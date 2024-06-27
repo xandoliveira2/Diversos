@@ -1,0 +1,17 @@
+<?php
+//incluir o arquivo que contem a classe Turma()
+require_once "../../classes/Turma.php";
+
+//Obtém o codigo ID enviado pelo método GET
+$id = $_GET['id'];
+
+//cria um novo novo objeto turma
+$turma = new Turma($id);
+
+//chama o métido(função) excluir do obejto turma
+$turma->excluir();
+
+//redireciona o usuario para a lista de turmas
+header('Location: turmas-listar.php');
+
+?>
