@@ -4,24 +4,23 @@ def fazer_hash(senha:str):
         soma += ord(senha[index]) * (index+1)
     divisor = divisor_primos(soma)
     return str(soma)+divisor
-    
 def comparador(lista: list[int]):
-    soma = 0
+    soma = 1
     for item in lista:
         soma*=item
+    return soma
 def divisor_primos(numero:int)->str:
+    copia = numero
     divisores = []
     contador = 2
     while True:
-        if comparador(divisores) == numero:
+        if comparador(divisores) == copia:
             break
         if (numero/contador).is_integer() and is_primo(contador):
             divisores.append(contador)
             numero = numero / contador
             contador-=1
         contador +=1
-        
-            
     retornar = str()
     for item in divisores:
         retornar+=str(item)
@@ -40,13 +39,15 @@ def is_primo(numero:int)->bool:
             return False
         else:
             return True
-
-
 def main():
-    entrada = ''
+    criptografia = []
     while True:
         entrada = input().split(' ')
         if 'ACABOU' in entrada:
             break
-        print(entrada[0],fazer_hash(entrada[1]))
+        criptografia.append(entrada)
+    criptografia.sort()
+    for itens in criptografia:
+        print(f'usuario...: {itens[0]}\nvalor hash: {fazer_hash(itens[1])}\n{'-'*30}')
 main()
+
