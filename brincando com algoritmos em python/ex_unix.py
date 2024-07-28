@@ -1,10 +1,12 @@
 DIA = 60*60*24 #segundos por dia -> 86400
-ANO_INICIO = 1970
+ANO_INICIO = 1970 # ano que comecou unixtimestamp
 
 def bissexto(ano:int) -> bool:
     if ano % 4 == 0:
         return True
     return False
+
+
 def unixtime(data:str='01/01/2024',horario:str='00:00:00',UTC:int = 3) -> int:
     meses = {2:28,4:30,6:30,9:30,11:30}
     tempo=0
@@ -20,45 +22,41 @@ def unixtime(data:str='01/01/2024',horario:str='00:00:00',UTC:int = 3) -> int:
             diastotais+= meses.get(i)+1
         elif i in meses.keys():
             diastotais+= meses.get(i)
-
         else:
             diastotais+=31
- 
     diastotais += int(data[0])-1
-    
     tempo = diastotais * DIA
-
     horario = horario.split(':')
-
     for i in range(len(horario)):
         if i == 0:
             tempo += ((int(horario[i])+UTC) * 60) * 60
         elif i == 1:
             tempo += int(horario[i]) * 60
         elif i == 2:
-            tempo += int(horario[i])
-            
+            tempo += int(horario[i])       
     return tempo
-# print(unixtime('28/07/2024','15:08'))
-def formatar(horas:int,minutos:int) -> str:
+
+
+def formatar(horas:int,minutos:int) -> str: 
     if horas<10:
         return str(f'0{horas}:0{minutos}')
     else:
         return str(f'{horas}:{minutos}')
-def tempoiguais(data:str='01/01/2024') -> list[(str,int)]:
     
+
+def tempoiguais(data:str='01/01/2024',utc:int=3) -> list[(str,int)]:
     timeunix = unixtime(data)
     lista =[('00:00',timeunix)]
     horas,minutos = 1,1
     while horas < 24 and minutos < 24:
-        lista.append((formatar(horas,minutos),unixtime(data,formatar(horas,minutos))))
+        lista.append((formatar(horas,minutos),unixtime(data,formatar(horas,minutos),utc)))
         horas+=1
         minutos+=1
-
     return lista
 
 
-print(tempoiguais('28/07/2024'))
+# print(tempoiguais('28/07/2024'))
+# print(tempoiguais('28/07/2024',5))
 
 
 
