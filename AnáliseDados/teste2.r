@@ -1,0 +1,7 @@
+[1] "oi"
+[1] "oi"
+[1] "oi"
+ [1] "comp"      "flt"       "i"         "inteiro"   "lnh"       "num"      
+ [7] "numero"    "oi1"       "var"       "vari"      "variavel1" "variavel2"
+[13] "variavel3" "variavel4" "x"         "y"        
+[1] "oi"
