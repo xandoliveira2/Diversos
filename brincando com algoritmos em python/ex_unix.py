@@ -112,3 +112,4 @@ if (fim2-comeco2) < (fim1-comeco1):
     print("metodo de string melhor")
 else:
     print("metodo matematico melhor")
+# conclusão -> numeros menores os dois são 'instantaneos' porém com maiores é muito mais vantajoso usar em string mesmo
