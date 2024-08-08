@@ -4,6 +4,7 @@ class Equipes:
         self.fatec = int(fatec)
         self.equipe =int(equipe)
         self.pontuacao = int(acertos * 100001 - tempo)
+        Equipes.listaglobal.append(self)
     def organizarfatec():
         listaresultado = list('-' * len(Equipes.listaglobal))
         contador = 0
@@ -45,6 +46,10 @@ def main():
         vagas -=1
         contador+=1
     c = sorted(listaresultado)
-    print(c)
-main()
+    novalista = []
+    for i in c:
+        novalista.append(str(i)) 
+    print(', '.join(novalista)+'.')
+if __name__ == '__main__':
+    main()
 #bosta de algoritmo demorou mais doque o previsto pq tinha um enorme problema entre o computador e a cadeira e ainda ficou horroroso

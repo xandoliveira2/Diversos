@@ -1,5 +1,8 @@
 import os
-import pathlib
+import re
+import sys
+import io
+import importlib
 """
 import programa #--> verificar sobre import ainda
 """
@@ -19,14 +22,13 @@ arquivos = os.listdir('programa')
 for arquivo in arquivos:
     if verificar(arquivo) != None:
         arquivos = arquivo.split('.')[0]
-print(arquivos)
-importar = f'programa\\{arquivo}'
+
+importar = f'programa.{arquivos}'
 exercicios = os.listdir('exercicios')
 for pasta in exercicios:
     if pasta.split('_')[1] == arquivos:
         diretorio = f'exercicios\\{pasta}'
         break
-
 ##att proximo vez ---> usar como iterador, len(os.listdir()) e puxar onde o index - vai ser inLogistica1.txt etc...
 
 
@@ -50,7 +52,7 @@ def organizar(lista:list[str]) -> list[str]:
                 if int(item[-5]) > int(outro[-5]):
                     contador +=1
             copia.insert(contador,item)
-            print(copia)
+           
             remover(copia,contador)
         return copia
     else:
@@ -70,7 +72,6 @@ def procurar(dicionario:dict,valorkey):
         if dicionario[chave] == valorkey:
             return chave
 def pegarnumerico(frase:str):
-    import re
     padrao = re.compile(r'[0-9]+')
     return padrao.search(frase).group()
     
@@ -84,6 +85,7 @@ def remover(lista:list,index,argumento='-'):
 
 inputs = organizar(inputs)
 outputs = organizar(outputs)
+
 def retirar(linha:str):
     # linha = list(linha)
     # linha.remove('\n')
@@ -98,11 +100,8 @@ def filtrar(linha:str, argumento = '\n'):
     return novalista
 
 
-import sys
-import io
-importar = 'programa.logistica'
 for index in range(len(inputs)):
-    import programa.logistica
+    
     originalsysin = sys.stdin
     originalsysout = sys.stdout
     capturaoutput = io.StringIO('')
@@ -118,8 +117,9 @@ for index in range(len(inputs)):
                 for linha in out.readlines(): # out
                     saida.append(retirar(linha)) # out
                 sys.stdin = inp # in
+                rodar_programa = importlib.import_module(importar)
                 sys.stdout = capturaoutput
-                programa.logistica.main()
+                rodar_programa.main()
                  # in
                 entrada.append(capturaoutput.getvalue()) # in
     except EOFError as motivo:
@@ -130,9 +130,9 @@ for index in range(len(inputs)):
         sys.stdin = originalsysin
     nentrada = filtrar(entrada[0])
     
-    
+    print('entrance',nentrada,'\nexit',saida)
     if nentrada != saida:
         print('WRONG ANSWER')     
         quit()
-    sys.modules.pop(f'programa.logistica',None)
+    sys.modules.pop(importar,None)
 print("CORRECT ANSWER")
