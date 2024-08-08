@@ -128,3 +128,37 @@ print(check2)
 contador = 0
 for i in check3:
     print(i)
+
+
+
+palavra = 'sopa de 200 reais de macaco kk'
+padrao = re.compile(r'[a-z]+ [a-z]+ [0-9]+ [a-z]+ ') #-> o + significa que pode haver mais de uma letra entre essa palavra, ou seja, letras de a-z que se aparecem em uma ou mais vezes
+c = padrao.finditer(palavra)
+print(*c)
+
+
+
+palavra = 'sopap dpe 200 reaispa de macaco kk'
+padrao = re.compile(r'[pa]*') #-> o * representa 0 ou mais vezes aparecidas, ou seja, se tiver 'pa' nao aparecer nenhuma vez, retorna nada (''), se ele aparecer o p, ele retorna o p
+#se aparecer o a, ele retorna so o a, se aparecer pa, ele retorna o pa, porem se encontrado pa uma vez, ele procurará no proximo item da string para ver se é pa tmb, entao
+# por exemplo se '...compile(r'[pa]*')' na string 'bicho papão' ele verifica b não tem pa então retorna '', a mesma coisa acontece até chegar no pa, ele verifica que é pa e os proximos
+# dois caracteres é pã, como ã não está no parametro, ele retorna pap desses indexes (nesse caso 7-10) e o proximo que ele vai verificar é o ã, que retornara '', o 'o' tmb e finaliza
+##OBS> ele reconhece \n tmb como um caractere
+c = padrao.finditer(palavra)
+for i in c:
+    print(i)
+
+
+
+palavra = 'sopa de macaco'
+padrao = re.compile(r'[aeiou]?') #-> ? = 1 ou 0 = sim ou não ---> retorna '' para todos que não estejam dentro do especificado, nesse caso se não for a,e,i,o ou u ele retornara ''
+# caso contrario ele retorna a letra
+c = padrao.finditer(palavra) 
+for i in c:
+    print(i)
+
+palavra = 'sopa de mamaco'
+padrao = re.compile(r'[ma]{3,4}') # -> {numero} -> quantidade exata de repeticoes, por exemplo, ter m ou a 3 vezes 
+# com dois parametros como na linha 161 significa min e maximo respectivamente
+c = padrao.finditer(palavra)
+print(*c,sep='\n')
