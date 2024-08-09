@@ -3,6 +3,7 @@ import re
 import sys
 import io
 import importlib
+import shutil
 """
 import programa #--> verificar sobre import ainda
 """
@@ -135,7 +136,15 @@ for index in range(len(inputs)):
     
     print('entrance',nentrada,'\nexit',saida)
     if nentrada != saida:
-        print('WRONG ANSWER')     
+        print('WRONG ANSWER')
+        try:
+            shutil.rmtree('programa\\__pycache__')   
+        except:
+            pass  
         quit()
     sys.modules.pop(importar,None)
 print("CORRECT ANSWER")
+try:
+    shutil.rmtree('programa\\__pycache__') 
+except:
+    pass
