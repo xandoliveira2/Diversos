@@ -122,13 +122,16 @@ for index in range(len(inputs)):
                 rodar_programa.main()
                  # in
                 entrada.append(capturaoutput.getvalue()) # in
-    except EOFError as motivo:
-        pass
+    except EOFError:
+        break
     finally:           
         capturaoutput.close()
         sys.stdout = originalsysout
         sys.stdin = originalsysin
+    
     nentrada = filtrar(entrada[0])
+
+        
     
     print('entrance',nentrada,'\nexit',saida)
     if nentrada != saida:
