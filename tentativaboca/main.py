@@ -1,9 +1,13 @@
+
 import os
 import re
 import sys
 import io
 import importlib
 import shutil
+import multiprocessing
+
+
 """
 import programa #--> verificar sobre import ainda
 """
@@ -101,50 +105,58 @@ def filtrar(linha:str, argumento = '\n'):
     return novalista
 
 
-for index in range(len(inputs)):
+def main():
+    for index in range(len(inputs)):
     
-    originalsysin = sys.stdin
-    originalsysout = sys.stdout
-    capturaoutput = io.StringIO('')
-    limpar = io.StringIO('')
-    entrada = []
-    saida = []
-    
-    sys.stdin= originalsysin
-    sys.stdout = originalsysout
-    try:
-        with open(f'{diretorio}\\in\\{inputs[index]}','r') as inp: # in     
-            with open(f'{diretorio}\\out\\{outputs[index]}','r') as out:  #out
-                for linha in out.readlines(): # out
-                    saida.append(retirar(linha)) # out
-                sys.stdin = inp # in
-                rodar_programa = importlib.import_module(importar)
-                sys.stdout = capturaoutput
-                rodar_programa.main()
-                 # in
-                entrada.append(capturaoutput.getvalue()) # in
-    except EOFError:
-        break
-    finally:           
-        capturaoutput.close()
-        sys.stdout = originalsysout
-        sys.stdin = originalsysin
-    
-    nentrada = filtrar(entrada[0])
+        originalsysin = sys.stdin
+        originalsysout = sys.stdout
+        capturaoutput = io.StringIO('')
+        limpar = io.StringIO('')
+        entrada = []
+        saida = []
 
-        
-    
-    print('entrance',nentrada,'\nexit',saida)
-    if nentrada != saida:
-        print('WRONG ANSWER')
+        sys.stdin= originalsysin
+        sys.stdout = originalsysout
         try:
-            shutil.rmtree('programa\\__pycache__')   
-        except:
-            pass  
-        quit()
-    sys.modules.pop(importar,None)
-print("CORRECT ANSWER")
-try:
-    shutil.rmtree('programa\\__pycache__') 
-except:
-    pass
+            with open(f'{diretorio}\\in\\{inputs[index]}','r') as inp: # in     
+                with open(f'{diretorio}\\out\\{outputs[index]}','r') as out:  #out
+                    for linha in out.readlines(): # out
+                        saida.append(retirar(linha)) # out
+                    sys.stdin = inp # in
+                    rodar_programa = importlib.import_module(importar)
+                    sys.stdout = capturaoutput
+
+
+                    
+                    rodar_programa.main()
+                    
+
+                     # in
+                    entrada.append(capturaoutput.getvalue()) # in
+        except EOFError:
+            pass
+        finally:           
+            capturaoutput.close()
+            sys.stdout = originalsysout
+            sys.stdin = originalsysin
+        print(entrada)
+        nentrada = filtrar(entrada[0])
+
+
+
+        print('entrance',nentrada,'\nexit',saida)
+        if nentrada != saida:
+            print('WRONG ANSWER')
+            try:
+                shutil.rmtree('programa\\__pycache__')   
+            except:
+                pass  
+            quit()
+        sys.modules.pop(importar,None)
+    print("CORRECT ANSWER")
+    try:
+        shutil.rmtree('programa\\__pycache__') 
+    except:
+        pass
+   
+main()
