@@ -1,11 +1,11 @@
 
-import os
-import re
+from os import listdir
+from re import compile
 import sys
-import io
-import importlib
-import shutil
-import multiprocessing
+from io import StringIO
+from importlib import import_module
+from shutil import rmtree
+from multiprocessing import Pool
 
 
 """
@@ -23,13 +23,13 @@ def verificar(arquivo:str,split:str='.'):
         pass
     return None
 
-arquivos = os.listdir('programa')
+arquivos = listdir('programa')
 for arquivo in arquivos:
     if verificar(arquivo) != None:
         arquivos = arquivo.split('.')[0]
 
 importar = f'programa.{arquivos}'
-exercicios = os.listdir('exercicios')
+exercicios = listdir('exercicios')
 for pasta in exercicios:
     if pasta.split('_')[1] == arquivos:
         diretorio = f'exercicios\\{pasta}'
@@ -38,8 +38,8 @@ for pasta in exercicios:
 
 
 
-inputs = [i for i in os.listdir(diretorio+"\\in")]
-outputs =  [i for i in os.listdir(diretorio+"\\out")]
+inputs = [i for i in listdir(diretorio+"\\in")]
+outputs =  [i for i in listdir(diretorio+"\\out")]
 
 def tudoigual(lista):
     padrao = len(lista[0])
@@ -77,7 +77,7 @@ def procurar(dicionario:dict,valorkey):
         if dicionario[chave] == valorkey:
             return chave
 def pegarnumerico(frase:str):
-    padrao = re.compile(r'[0-9]+')
+    padrao = compile(r'[0-9]+')
     return padrao.search(frase).group()
     
 def remover(lista:list,index,argumento='-'):
@@ -110,28 +110,21 @@ def main():
     
         originalsysin = sys.stdin
         originalsysout = sys.stdout
-        capturaoutput = io.StringIO('')
-        limpar = io.StringIO('')
+        capturaoutput = StringIO('')
+        # limpar = io.StringIO('')
         entrada = []
         saida = []
 
         sys.stdin= originalsysin
         sys.stdout = originalsysout
         try:
-            with open(f'{diretorio}\\in\\{inputs[index]}','r') as inp: # in     
-                with open(f'{diretorio}\\out\\{outputs[index]}','r') as out:  #out
+            with open(f'{diretorio}\\in\\{inputs[index]}','r',encoding='UTF-8') as inp: # in     
+                with open(f'{diretorio}\\out\\{outputs[index]}','r',encoding='UTF-8') as out:  #out
                     for linha in out.readlines(): # out
                         saida.append(retirar(linha)) # out
                     sys.stdin = inp # in
                     sys.stdout = capturaoutput
-                    importlib.import_module(importar)
-                    
-
-
-                    
-                   
-                    
-
+                    import_module(importar)
                      # in
                     entrada.append(capturaoutput.getvalue()) # in
         except EOFError:
@@ -149,14 +142,14 @@ def main():
         if nentrada != saida:
             print('WRONG ANSWER')
             try:
-                shutil.rmtree('programa\\__pycache__')   
+                rmtree('programa\\__pycache__')   
             except:
                 pass  
             quit()
         sys.modules.pop(importar,None)
     print("CORRECT ANSWER")
     try:
-        shutil.rmtree('programa\\__pycache__') 
+        rmtree('programa\\__pycache__') 
     except:
         pass
    
