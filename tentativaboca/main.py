@@ -123,12 +123,13 @@ def main():
                     for linha in out.readlines(): # out
                         saida.append(retirar(linha)) # out
                     sys.stdin = inp # in
-                    rodar_programa = importlib.import_module(importar)
                     sys.stdout = capturaoutput
+                    importlib.import_module(importar)
+                    
 
 
                     
-                    rodar_programa.main()
+                   
                     
 
                      # in
