@@ -1,12 +1,11 @@
-
 from os import listdir
 from re import compile
 import sys
 from io import StringIO
 from importlib import import_module
 from shutil import rmtree
-from multiprocessing import Pool
-
+import concurrent
+import concurrent.futures
 
 """
 import programa #--> verificar sobre import ainda
@@ -124,7 +123,15 @@ def main():
                         saida.append(retirar(linha)) # out
                     sys.stdin = inp # in
                     sys.stdout = capturaoutput
-                    import_module(importar)
+                    
+                    try:
+                        with concurrent.futures.ThreadPoolExecutor() as ex:
+                            ex.submit(import_module,importar).result(5)
+                            
+                    except concurrent.futures.TimeoutError:
+                        print("TIME LIMIT EXCEEDED")    
+                    
+                    #import_module(importar)   
                      # in
                     entrada.append(capturaoutput.getvalue()) # in
         except EOFError:
