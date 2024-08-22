@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ex003</h1>
+<script>
+    // var nome = prompt("Digite seu nome: ")
+    // var teste = confirm("seu nome é: "+nome+". Está certo?") //para concaternar variaveis usar + (obs> nao funciona ,)
+    // if (teste == true){alert("true")}
+    // else{alert("False")}
+    // var num1 = prompt("Digite um valor:")
+    // var num2 = prompt("Digite outro valor:")
+    // var soma = num1+num2
+    // window.alert(soma) // nesse teste, o resultado sairia como a soma de duas strings, por padrao o prompt recolhe dados no tipo string, então para
+    // //fazermos operacoes matematicas, precisamos declarar que esse tipo é um numero inteiro ou float, transformando a string nesse tipo podendo
+    // //usar as seguintes conversoes:
+    // var num1 = Number.parseInt(prompt("Digite um valor:")) // se inserirmos um float e mandarmos ele converter para inteiro, ele vai ignorar
+    // // a parte decimal
+    // var num2 = Number.parseFloat(prompt("Digite outro valor:"))
+    // var soma = num1+num2
+    // window.alert(soma)   
+    //nas versoes mais novas de javascript, você pode apenas converter usando number: obs> number ele vai identificar sozinho se o numero for inteiro ou float
+    // var num1 = Number(prompt("Digite um valor:"))
+    // var num2 = Number(prompt("Digite outro valor:"))
+    // var soma = num1+num2
+    // window.alert(soma)
+    // //para fazer ao inverso (transformar de numero para string) tem duas maneiras:
+    // let inteiro = 346789
+    // inteiro = inteiro.toString()
+    // // ou 
+    // String(soma)
+    // window.alert(inteiro+soma)
+    //mexer com string:
+//     nome = 'Alexandre'
+//     idade = 21
+//     nota = 2
+//     window.alert('O aluno '+nome+' com '+idade+' anos tirou na prova a nota: '+nota)
+//     // usando craze:
+//     window.alert(`O aluno ${nome} com ${idade} anos tirou na prova a nota: ${nota}`)
+//     //tmb tem alguns metodos como por exemplo:
+//     // retorna tamanho da nossa cadeia de caracteres da variavel nome
+//    alert("numeros de palavra: "+nome.length)
+   
+//     alert(nome.toUpperCase()) // retorna nossa linha de caracteres para maiusculas
+   
+//    alert(nome.toLowerCase()) // retorna nossa linha de caracteres para minusculas
+   
+//     //novo metodo para escrever na pagina agora desssa vez:
+//     nome = "Alexandre"
+//     document.write("Bem vindo "+nome)
+
+    //formatando numeros:
+    var pi = 3.14159265
+    document.write(pi+'<br/>')
+    document.write(pi.toFixed(2)+'<br/>') // vai mostrar apenas 2 casas decimais
+    document.write(pi.toFixed(4).replace(".",',')+'<br/>') // vai mostrar 4 casas decimais e vai trocar o . por , (que é oque costumamos usar d valores
+        // aqui no brasil)
+
+    document.write(pi.toLocaleString("pt-br",{style: 'currency', currency: 'BRL'})+'<br/>')//essa funcao pega com base na string 'pt-br (ou seja UTF-8)'
+    //e vai pegar um objeto d parametro que é oq ta entre {} onde style: currency estou me referindo que o numero em formato de string vai ser 
+    // convertido em 'moeda' (traducao literal de currency) e a moeda que ele vai pegar de referencia é o real (BRL) onde tmb pooderiamos colocar 
+    // sigla de dolar, euro, ienes que ele iria se adaptar p isso:
+    document.write(pi.toLocaleString("pt-br",{style: 'currency', currency: 'USD'})+'<br/>')
+    document.write(pi.toLocaleString("pt-br",{style: 'currency', currency: 'EUR'})+'<br/>')
+    document.write(pi.toLocaleString("pt-br",{style: 'currency', currency: 'JPY'})+'<br/>')
+    
+
+</script>
+
+
+
+</body>
+</html>
