@@ -32,7 +32,7 @@ def is_primo(numero:int)->bool:
         return False
     else:
         condicao = 1
-        for numeros in range(3,numero//2):
+        for numeros in range(3,numero//2,2):
             if (numero/numeros).is_integer():
                 condicao+=1
         if condicao > 1:
