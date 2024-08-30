@@ -24,14 +24,23 @@ def verify_all_dependencies(dictionary:dict):
     exit()
     
 def main_verification(dictionary:dict):
+    
     for keys in dictionary:
         for values in dictionary[keys]:
-            print(values)
-            print(dictionary)
-            print(keys)
-            if dictionary[values] == keys:
-                print('usar injecao tardia')
-                exit()
+        
+            value_key_index = 0
+            
+            while True:
+
+                try:
+                    if dictionary[values][value_key_index] == keys:
+                        print('usar injecao tardia')
+                        exit()
+
+                except IndexError:
+                    break
+                value_key_index+=1
+            
     print('ok')
 dictonary_master = dict()
 loops = int(input())
@@ -47,4 +56,8 @@ for i in range(loops):
         dictonary_master[dependencies[0]] = (dependencies[1])
 increase_empty_values(dictonary_master,letters)
 verify_all_dependencies(dictonary_master)
+
+
+
+
 main_verification(dictonary_master)
