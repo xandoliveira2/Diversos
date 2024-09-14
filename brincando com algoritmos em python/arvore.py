@@ -16,6 +16,15 @@ def take_left_side():
         pot+=1
 
     print(retornar)
+def take_right_side():
+    retornar = [arvore_geral[0][0]]
+    pot = 0
+    for i in range(1,len(arvore_geral)):
+        retornar.append(arvore_geral[i][2**pot:])
+        pot+=1
+
+    print(retornar)
 
 
 take_left_side()
+take_right_side()
