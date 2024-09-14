@@ -162,7 +162,8 @@ def main():
 
 
 
-        print('entrance',nentrada,'\nexit',saida)
+        # print('entrance',nentrada,'\nexit',saida)
+   
         if nentrada != saida:
             print('WRONG ANSWER')
 
@@ -174,10 +175,11 @@ def main():
         else:
             global CONTADOR
             CONTADOR +=1
+            print('CORRECT ANSWER')
         sys.modules.pop(importar,None)
-    print("CORRECT ANSWER")
+    # print("CORRECT ANSWER")
     marcador = len(listdir(f'{diretorio}\\in'))
-    print(f"Você acertou {CONTADOR} de {marcador}")
+    print(f"\n\n\nCORRECT ANSWERS {CONTADOR} / {marcador}")
 
 
     try:
