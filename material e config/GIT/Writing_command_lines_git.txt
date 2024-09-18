@@ -1,0 +1,150 @@
+git config --global user.name 'nome do usuário' #-> define seu nome como escopo global 
+git config --global user.email seuemail@hotmail.com #-> define seu email como escopo global
+
+#### diferenças entre global - local - system ####
+
+local -> afeta apenas o repositório git ESPECIFICO
+que você está trabalhando
+
+
+global -> afeta TODOS repositórios git feito pelo
+usuário logado no sistema, em qualquer repositório
+de diferentes pastas
+
+system -> afeta todos repositórios e todos usuários
+do sistema, é a configuração do systema, um pouco 
+diferente de local e global que indica o 'usuário'
+system funciona para o sistema, por exemplo editor
+de código padrão, etc.
+existe sim como você usar comandos de usuário para
+nível de system, porém não faria sentido considerando
+que você mudaria todos os nomes de usuário do sistema
+para um mesmo nível, global define isso de maneira 
+mais reservada e otimizada
+
+OBS> níveis de prioridades:
+1 - (maior prioridade) local
+2 - (media prioridade) global
+3 - (baixa prioridade) system
+se um repositório estiver com mais de uma configuração
+ele dará prioridade ao definido no local->global->system
+respectivamente
+##################################################
+
+
+git config user.name #-> exibe no terminal o user.name configurado atualmente
+git config user.email #-> exibe no terminal o user.email configurado atualmente
+
+git config init.defaultBranch #-> exibe como está definido para quando a primeira branch é criada, define o nome da branch (padrão -> master)
+git config --global init.defaultBranch main #-> define no escopo global, que todas branchs padrão, receberá o nome de main (nesse caso é main, porém você pode
+mudar para o que quiser, o nome da branch pode ser qualquer letra de caracteres (a-z,A-Z) [obs: não sei se pode alguns caracteres especiais e numeros]{lógica: é provável que aceite números em formato de string, porém não tenho certeza se aceita caracteres como ! # etc, talvez algo mais padrão como _?}
+
+
+git config --global credential.helper cache -> armazena suas credenciais temporariamente (15 minutos padrão)
+para aumentar esse tempo coloque:
+git config --global credential.helper 'cache --timeout=3600'
+
+
+git config --global credential.helper store -> armazena suas credenciais permanentemente
+
+
+SSH ___
+
+verificar se tem chaves ssh já criadas:
+
+ls -al ~/.ssh    -> ls = listar  -al  = tudo (incluindo arquivos ocultos)  ~ = pasta home (no Windows 
+equivale a pasta user ou users) e .ssh = extensão (geralmente vai chamar extensão .pub que é ainda do ssh
+porém se refere a chave pública de ssh, e não a privada)
+
+
+ssh-keygen -> responsável por gerar chaves (arquivos da chave e o algoritmo responsável pela criptografia)
+-t -> tipo de arquivo que vamos utilizar para criptografar
+ed25519 -> é o nome de um algoritmo de criptografia de chave pública baseado em curvas elípticas (mais seguro
+e eficiente do que o antigo rsa {que se por sinal na digitação do código der errado, pode ser versão não 
+atualizada, fazendo assim com que você tenha que usar rsa -b 4096 para criptografia ao invés o  ed25519}) 
+-C -> adicionar um comentário indicando a funcionalidade porém nesse caso vai ser o proprietário dessa chave
+"meu_email@example.com" -> é comentário do parâmetro -C, é apenas para facilitar o entendimento e o proprietário
+da chave ssh que será criado, não é como se fosse alterar a funcionalidade da função se botasse qualquer outra
+coisa aqui
+
+então tudo fica:
+
+ssh-keygen -t ed25519 -C "meu_email@example.com"
+
+após execução desse comando vai deixar para o usuário digitar o local onde será salvo a chave (se não quiser
+alterar o local, basta apertar enter que vai ser direcionado na pasta 'home')
+
+após escolher o caminho, vai aparecer para você digitar 'passphrase' que é a senha que você utilizará para
+acessar essa chave
+
+criado a senha da sua chave, ela será armazenada normalmente no diretório que você escolheu, sem criptografia
+e sem segurança nenhuma, vai estar la algo como chave ssh = 194815891895192 senha = senha123, para tornar
+esse arquivo seguro vamos usar agora ssh-agent
+
+eval "$(ssh-agent -s)"  -> 'liga' o ssh-agent
+
+agora vamos passar nossa chave privada para o ssh
+
+ssh-add ~/.ssh/id_ed25519   -> se você tiver nomeado sua chave com nome diferente, trocar id_ed25519 pelo nome
+o qual você renomeou o arquivo (lembre-se que vai pedir sua 'passphrase' {referente a senha que você criou})
+
+agora vamos adicionar a chave ssh na conta do GitHub (do repositório remoto)
+
+settings -> SSH and GPG Keys -> preencher dados com:
+title -> nome da maquina onde está a chave
+
+Key type -> tipo da chave, autenticação (que é o nosso caso) e de assinatura (não sei e ainda não estudei o que 
+é essa assinatura, parece que algo para verificar assinatura do commit, é o que eu sei bem superficialmente)
+
+key -> vamos colar aqui nossa chave pública (para procurar ela você deve:
+mudar para a pasta que está a chave (se for o home passe como argumento ~)
+entrar na pasta .ssh
+(então até aqui o comando fica: cd ~/.ssh)
+depois você dá o comando ls para ver as chaves
+vai exibir os arquivos, você vai procurar o seu que passou no nome com extensão .pub (queremos o publico)
+vamos exibir o comando dele com o comando cat, nesse caso o comando ficaria algo como:
+cat id_ed25519.pub
+ele vai exibir o código, você copia ele e cola na aba do 'key' no GitHub)
+[vai pedir sua senha no final dessa operação]
+para fazer clonagem com ssh é da mesma forma que por http, você deve copiar o link e botar como parâmetro no
+git clone 'parameter'
+
+git clone URL folder_name -> 'o próximo parâmetro depois da URL do comando Clone, você define qual será o nome da pasta que será criada ao clonar (por padrão se não houver parâmetro ele vai para o nome que está no repositório remoto)
+
+git remote add 'nome' URL -> faz com que possamos de um mesmo repositório local ter vários repositórios remotos (erro de  'refusing to merge unrelated histories' precisa acrescenter no pull posteriormente :  GIT PULL NAME_REPO_CLOUD BRANCH_REPO_CLOUD --allow-unrelated-histories)
+
+## COREÇÃO DE POSSIVEIS ERROS
+1 - git init pasta errada:
+rm -rf .git (remove recursive force the file/folder .git) (são comandos Linux, tem que verificar depois exatamente)
+
+2 - modificação sem querer:
+git restore <file> -> então por exemplo, sem querer apaguei um arquivo txt e salvei, posso usar git restore e o nome do arquivo txt que eu desejo, para restaurar ele no último estado salvo dele (CUIDADO: ele descarta todas operações feitas no arquivo localmente, então se você deseja salvar algo dentro dele, é bom você salvar o que quer em outra pasta e depois adicionar novamente ou qualquer estratégia que ache melhor)
+
+3 - modificar nome do último commit:
+git commit -am -m 'nova mensagem que deseja'
+
+4 - commitei sem querer e desejo voltar o commit:
+3 formas de fazer isso -> --soft --mixed(default) e --hard
+1 - git reset --hard <commit code>
+volta até aquele commit, excluindo tudo feito depois dele, deixando apenas o que tinha até no momento do commit que você copiou o código
+
+2 - git reset --mixed <commit code>
+volta todos arquivos até no commit code para a 'arvore de trabalho', onde os arquivos ainda não foram adicionados no rastreamento (git add)
+
+3 - git reset --soft <commit code>
+volta todos os arquivos até o commit code, excluindo os anteriores também, porém se mantem salvo e rastreável dentro da pasta, apenas não passando pelo commit (chamada de área de preparação)
+
+
+
+git push -u origin main -> o -u significa definir como upstream, provavelmente para não termos que ficar digitando git push origin main toda hora para enviar, apenas git push bastaria depois de definir upstream com origin main
+
+
+git merge <branch name> -> vai mesclar arquivos da sua branch atual com a branch que passar no parâmetro
+
+git branch -d <branch name> -> exclui aquela branch
+
+
+
+ 
+
+

@@ -1,0 +1,11 @@
+Gerando token para autorização de conta no GitHub com git
+
+vá em configurações
+aba 'tokens (classic)'
+coloque um nome para a utilização do token (opcional)
+selecione um tempo para expiração (obrigatório) padrão = 30 Dias
+abaixo da expiração, selecionar nível de permissão que esse token terá
+
+
+para usar token, utiliza-se ele como campo de senha em processos
+que necessitem de autenticação no git
