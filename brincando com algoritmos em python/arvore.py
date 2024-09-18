@@ -1,30 +1,44 @@
+def take_left_side(arvore:list)->list[int]:
+    """pega parte esquerda da árvore
 
-arvore_geral = [
-    [19],
-[13,17],
-[7,11,3,7],
-[5]
+    Args:
+        arvore(list) -> this is the formated tree list
 
-]
-potencia = 0
-ponteiro = 0
-
-def take_left_side():
-    retornar = [arvore_geral[0][0]]
+    Returns:
+        uma lista com todos numeros da parte esquerda da árvore
+    """
+    retornar = [arvore[0][0]]
     pot = 0
-    for i in range(1,len(arvore_geral)):
-        retornar.append(arvore_geral[i][0:2**pot])
+    for i in range(1,len(arvore)):
+        retornar.append(arvore[i][0:2**pot])
         pot+=1
     return retornar
-def take_right_side():
-    retornar = [arvore_geral[0][0]]
+def take_right_side(arvore):
+    """right part from tree
+
+    Args:
+        arvore(list) -> this is the formated tree list
+        
+
+    Returns:
+        list[int]: the right int values 
+    """
+    retornar = [arvore[0][0]]
     pot = 0
-    for i in range(1,len(arvore_geral)):
-        retornar.append(arvore_geral[i][2**pot:])
+    for i in range(1,len(arvore)):
+        retornar.append(arvore[i][2**pot:])
         pot+=1
     return retornar
 
-def formatar(particao):
+def formatar(particao:list): 
+    """remove 'list' inside from another 'list'
+
+    Args:
+        particao (list): this should be a list with list inside
+
+    Returns:
+        list: list without another lists inside 
+    """
     retornar = []
     for i in particao:
         if type(i) == list:
@@ -33,16 +47,38 @@ def formatar(particao):
         else:
             retornar.append(i)
     return retornar
-l = take_left_side()
-r = take_right_side()
-l = formatar(l)
-r = formatar(r)
-print(r,'  ',list(reversed(r)))
-print(l)
-if l == sorted(l) and r == sorted(r):
-    print(1)
-elif l == list(reversed(sorted(l))) and r == list(reversed(sorted(r))): # tudo errado, preciso criar uma função que retorne ela organizada e desorganizada corretamente
-    #o que diabos passou na cabeça p botar essa merda?
-    print(2)
-else:
-    print(0)
+# def separar_lista(lista:list):
+#     pot = 0
+#     retornar = [lista[0]]
+#     lista.pop(0)
+#     while True:
+#         try: #                               0  1 2   3 4 5 6   7 8 9  10 11 12 13 14
+#             retornar.append(lista[2**pot]) # 1  2,3   4,5,6,7   8,9,10,11,12,13,14,15
+#             retornar.append(lista[2**(pot+1)])
+#             pot+=1
+#         except IndexError:
+
+def separar(lista):
+    potencia = 0
+    retornar = [lista[0]]
+    numero = len(lista)**1/2
+    if numero == int(numero):
+        numero +=1
+    
+    for i in range(int(numero)):
+        retornar.append(lista[2**potencia:2**potencia+1])
+        potencia+=1
+    return retornar
+
+
+def criar_arvore():
+    
+    vezes = int(input())
+    dados_bruto = []
+    for i in range(vezes):
+        dados_bruto.append(int(input()))
+    print(separar(dados_bruto))
+criar_arvore()
+
+
+   
