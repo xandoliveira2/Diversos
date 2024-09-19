@@ -121,7 +121,7 @@ rm -rf .git (remove recursive force the file/folder .git) (são comandos Linux, 
 git restore <file> -> então por exemplo, sem querer apaguei um arquivo txt e salvei, posso usar git restore e o nome do arquivo txt que eu desejo, para restaurar ele no último estado salvo dele (CUIDADO: ele descarta todas operações feitas no arquivo localmente, então se você deseja salvar algo dentro dele, é bom você salvar o que quer em outra pasta e depois adicionar novamente ou qualquer estratégia que ache melhor)
 
 3 - modificar nome do último commit:
-git commit -am -m 'nova mensagem que deseja'
+git commit --amend -m 'nova mensagem que deseja'
 
 4 - commitei sem querer e desejo voltar o commit:
 3 formas de fazer isso -> --soft --mixed(default) e --hard
@@ -143,8 +143,7 @@ git merge <branch name> -> vai mesclar arquivos da sua branch atual com a branch
 
 git branch -d <branch name> -> exclui aquela branch
 
-
-
+git remote rm <nome do 'origin'>
  
 
 
