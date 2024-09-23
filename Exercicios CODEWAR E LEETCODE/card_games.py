@@ -28,5 +28,16 @@ def card_game(n):
                 n =(n/2)-1
 
     return alice_points
+import sys
+sys.set_int_max_str_digits(1000000)
+import math
+def zeros(n:int):
+    a = str(math.factorial(n))
+    contador = 0
+    for i in a[::-1]:
+        if i == '0':
+            contador+=1
+        else:
+            break
+    return contador
 
-            
