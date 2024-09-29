@@ -93,17 +93,28 @@ checkfinditer = p1.finditer(texto) #-> igual ao do search, porém ele retorna um
 # o search retorna 3,4 que foi onde ele encontrou o primeiro 'match', com finditer ele verifica todos que deram match, então com a deu no sopA de mAcAco, 3 match, finditer retorna
 # a posição dos 3 encontrados
  
+print('findall "a" =')
 print(checkfindall)
+print('match "a" =')
 print(checkmatch)
+print('search "a" =')
 print(checksearch)
+print('search.group "a" =')
 print(checksearch.group())
+print('finditer "a" =')
 print(checkfinditer)
+print('finditer após lista "a" =')
+
+print(checkfinditer)
+
+
 lc = []
+print('checkfinditer em loop')
 for i in checkfinditer:
     print(i)
 
 
-palavra = """ZZZZZZZZZZZZZZZsopa de macaco de 1995, 30 anos após o ...
+palavra = """a0ZZZZZZZZZZZZZZZsopa de macaco de 1995, 30 anos após o ...
 que destruiu o mundo chamado ...
 'cara, para de fumar mano pqp'
 """
@@ -162,3 +173,4 @@ padrao = re.compile(r'[ma]{3,4}') # -> {numero} -> quantidade exata de repeticoe
 # com dois parametros como na linha 161 significa min e maximo respectivamente
 c = padrao.finditer(palavra)
 print(*c,sep='\n')
+
