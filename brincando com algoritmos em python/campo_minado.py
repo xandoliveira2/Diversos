@@ -19,4 +19,6 @@ def colocar_números(matriz): # verificar sobre index de matriz ainda
                 pass
             else:
                 if i == 0 and j == 0:
+                    pass
+                
                     

@@ -57,7 +57,6 @@ print(comeco2,fim2,'\n',comeco1,fim1,'\n',comeco,fim)
 
 
 
-
 # def acrescentar(a,b):
 #     while len(a)<len(b):
 #         a = list(a)
