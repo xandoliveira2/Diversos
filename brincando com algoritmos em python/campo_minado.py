@@ -82,7 +82,8 @@ def main():
     verificador = []
     print('\n')
     for linha in matriz_imprimivel:
-        print(linha)
+        linha = list(map(str,linha))
+        print(f"{'   '.join(linha):^}")
     print('\n')
     while True:
         try:
@@ -99,7 +100,8 @@ def main():
             matriz_imprimivel[int(entrada_usuario[0])-1][int(entrada_usuario[1])-1] = dicionario_completo[(int(entrada_usuario[0])-1,int(entrada_usuario[1])-1)]
             contagem-=1
             for linha in matriz_imprimivel:
-                print(linha)
+                linha = list(map(str,linha))
+                print(f"{'   '.join(linha):^}")
 
             if matriz_imprimivel[int(entrada_usuario[0])-1][int(entrada_usuario[1])-1] == 'b':
                 print('\nVocê acertou em uma mina, que pena, tente novamente')
