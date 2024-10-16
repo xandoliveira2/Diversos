@@ -67,6 +67,7 @@ df['data'] = df['data'].dt.strftime('%d/%m/%Y')
 try:
     df = df.sort_values('data')
     df = df.sort_values('horario')
+    
 except:
     pass
 data = st.sidebar.selectbox("Data",df['data'].unique())
@@ -81,18 +82,18 @@ df['color'] = df['total'].apply(dcolor)
 # df.reset_index(drop=False,inplace=True)
 df_filtered = df[df["data"] == data]
 # chartline1 = st.line_chart(df_filtered,x='horario',y=['carros','motos','Total'])
-tent_plot = pe.line(df_filtered,'horario',[df_filtered['carros'],df_filtered['motos'],df_filtered['total']])
+# tent_plot = st.line_chart(df_filtered,x ='horario',y=['motos','carros','total'])
 tent_plot1 = pe.line(df_filtered,'horario',[df_filtered['carros'],df_filtered['motos']])
+
 
 # col1 = st.plotly_chart(tent_plot)
 col1 = st.columns(2)
 col2 = st.columns(2)
-lista = []
 col3 = st.columns(1)
 with col1[0]:
     st.plotly_chart(tent_plot1)
-with col1[1]:
-    st.plotly_chart(tent_plot)
+# with col1[1]:
+    # st.plotly_chart(tent_plot)
 
 option = st.selectbox("Horários:",df_filtered['horario'].unique())
 df_filtered1 = df[(df['horario']==option) & (df['data'] == data)]

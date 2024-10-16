@@ -1,0 +1,672 @@
+[{
+  "_id": {
+    "$oid": "670d4e675ae7a3fea956ffcd"
+  },
+  "data": "01/12/2024",
+  "horario": "00:00",
+  "carros": 50,
+  "motos": 20,
+  "total": 70,
+  "latitude": "22°25'52.1S\"",
+  "longitude": "46°49'57.8\"W"
+},
+{
+  "_id": {
+    "$oid": "670d4e865ae7a3fea956ffce"
+  },
+  "data": "01/12/2024",
+  "horario": "01:00",
+  "carros": 10,
+  "motos": 0,
+  "total": 10,
+  "latitude": "22°25'52.1S\"",
+  "longitude": "46°49'57.8\"W"
+},
+{
+  "_id": {
+    "$oid": "670d4e935ae7a3fea956ffcf"
+  },
+  "data": "01/12/2024",
+  "horario": "02:00",
+  "carros": 5,
+  "motos": 3,
+  "total": 8,
+  "latitude": "22°25'52.1S\"",
+  "longitude": "46°49'57.8\"W"
+},
+{
+  "_id": {
+    "$oid": "670d4ea35ae7a3fea956ffd0"
+  },
+  "data": "02/12/2024",
+  "horario": "00:00",
+  "carros": 25,
+  "motos": 5,
+  "total": 30,
+  "latitude": "22°25'52.1S\"",
+  "longitude": "46°49'57.8\"W"
+},
+{
+  "_id": {
+    "$oid": "670d4eb55ae7a3fea956ffd1"
+  },
+  "data": "02/12/2024",
+  "horario": "01:00",
+  "carros": 0,
+  "motos": 0,
+  "total": 0,
+  "latitude": "22°25'52.1S\"",
+  "longitude": "46°49'57.8\"W"
+},
+{
+  "_id": {
+    "$oid": "670d4ec35ae7a3fea956ffd2"
+  },
+  "data": "02/12/2024",
+  "horario": "02:00",
+  "carros": 2,
+  "motos": 0,
+  "total": 2,
+  "latitude": "22°25'52.1S\"",
+  "longitude": "46°49'57.8\"W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c76000389e"
+  },
+  "data": "15/10/2024",
+  "horario": "00:00",
+  "carros": 98,
+  "motos": 7,
+  "total": 105,
+  "latitude": "22°26.3'S",
+  "longitude": "46°50.1'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c76000389f"
+  },
+  "data": "15/10/2024",
+  "horario": "01:00",
+  "carros": 67,
+  "motos": 21,
+  "total": 88,
+  "latitude": "22°26.4'S",
+  "longitude": "46°50.0'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038a0"
+  },
+  "data": "15/10/2024",
+  "horario": "02:00",
+  "carros": 21,
+  "motos": 12,
+  "total": 33,
+  "latitude": "22°25.5'S",
+  "longitude": "46°50.4'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038a1"
+  },
+  "data": "15/10/2024",
+  "horario": "03:00",
+  "carros": 63,
+  "motos": 35,
+  "total": 98,
+  "latitude": "22°25.8'S",
+  "longitude": "46°49.4'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038a2"
+  },
+  "data": "15/10/2024",
+  "horario": "04:00",
+  "carros": 57,
+  "motos": 48,
+  "total": 105,
+  "latitude": "22°25.7'S",
+  "longitude": "46°49.7'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038a3"
+  },
+  "data": "15/10/2024",
+  "horario": "05:00",
+  "carros": 78,
+  "motos": 40,
+  "total": 118,
+  "latitude": "22°25.9'S",
+  "longitude": "46°50.3'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038a4"
+  },
+  "data": "15/10/2024",
+  "horario": "06:00",
+  "carros": 18,
+  "motos": 32,
+  "total": 50,
+  "latitude": "22°26.4'S",
+  "longitude": "46°49.6'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038a5"
+  },
+  "data": "15/10/2024",
+  "horario": "07:00",
+  "carros": 43,
+  "motos": 49,
+  "total": 92,
+  "latitude": "22°26.4'S",
+  "longitude": "46°50.3'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038a6"
+  },
+  "data": "15/10/2024",
+  "horario": "08:00",
+  "carros": 19,
+  "motos": 46,
+  "total": 65,
+  "latitude": "22°26.0'S",
+  "longitude": "46°49.6'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038a7"
+  },
+  "data": "15/10/2024",
+  "horario": "09:00",
+  "carros": 64,
+  "motos": 26,
+  "total": 90,
+  "latitude": "22°25.7'S",
+  "longitude": "46°49.9'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038a8"
+  },
+  "data": "15/10/2024",
+  "horario": "10:00",
+  "carros": 25,
+  "motos": 11,
+  "total": 36,
+  "latitude": "22°25.5'S",
+  "longitude": "46°49.7'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038a9"
+  },
+  "data": "15/10/2024",
+  "horario": "11:00",
+  "carros": 45,
+  "motos": 2,
+  "total": 47,
+  "latitude": "22°26.3'S",
+  "longitude": "46°50.4'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038aa"
+  },
+  "data": "15/10/2024",
+  "horario": "12:00",
+  "carros": 94,
+  "motos": 44,
+  "total": 138,
+  "latitude": "22°26.3'S",
+  "longitude": "46°50.1'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038ab"
+  },
+  "data": "15/10/2024",
+  "horario": "13:00",
+  "carros": 42,
+  "motos": 45,
+  "total": 87,
+  "latitude": "22°25.6'S",
+  "longitude": "46°50.5'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038ac"
+  },
+  "data": "15/10/2024",
+  "horario": "14:00",
+  "carros": 36,
+  "motos": 44,
+  "total": 80,
+  "latitude": "22°26.1'S",
+  "longitude": "46°49.6'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038ad"
+  },
+  "data": "15/10/2024",
+  "horario": "15:00",
+  "carros": 16,
+  "motos": 4,
+  "total": 20,
+  "latitude": "22°26.2'S",
+  "longitude": "46°49.7'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038ae"
+  },
+  "data": "15/10/2024",
+  "horario": "16:00",
+  "carros": 9,
+  "motos": 41,
+  "total": 50,
+  "latitude": "22°26.1'S",
+  "longitude": "46°49.6'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038af"
+  },
+  "data": "15/10/2024",
+  "horario": "17:00",
+  "carros": 79,
+  "motos": 28,
+  "total": 107,
+  "latitude": "22°25.5'S",
+  "longitude": "46°49.4'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038b0"
+  },
+  "data": "15/10/2024",
+  "horario": "18:00",
+  "carros": 60,
+  "motos": 8,
+  "total": 68,
+  "latitude": "22°26.4'S",
+  "longitude": "46°49.7'W"
+},
+{
+  "_id": {
+    "$oid": "670dcf4c8060c2c7600038b1"
+  },
+  "data": "15/10/2024",
+  "horario": "19:00",
+  "carros": 93,
+  "motos": 32,
+  "total": 125,
+  "latitude": "22°25.7'S",
+  "longitude": "46°49.6'W"
+},
+{
+  "_id": {
+    "$oid": "670ddb978060c2c7600038b2"
+  },
+  "data": "15/10/2024",
+  "horario": "06:00",
+  "carros": 20,
+  "motos": 22,
+  "total": 42,
+  "latitude": "22°23.4'S",
+  "longitude": "46°43.6'W"
+},
+{
+  "_id": {
+    "$oid": "670ef1aee063216550a4de6a"
+  },
+  "data": "01/12/2024",
+  "horario": "00:00",
+  "carros": 20,
+  "motos": 20,
+  "total": 40,
+  "latitude": "22°25'55.0\"S",
+  "longitude": "46°50'06.3\"W"
+},
+{
+  "_id": {
+    "$oid": "670f0045e063216550a4de6b"
+  },
+  "data": "01/12/2024",
+  "horario": "01:00",
+  "carros": 1,
+  "motos": 0,
+  "total": 1,
+  "latitude": "22°25'55.0\"S",
+  "longitude": "46°50'06.3\"W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984dda6"
+  },
+  "data": "17/10/2024",
+  "horario": "22:00",
+  "carros": 37,
+  "motos": 13,
+  "total": 50,
+  "latitude": "22°25.7'S",
+  "longitude": "46°50.0'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984dda7"
+  },
+  "data": "17/10/2024",
+  "horario": "02:00",
+  "carros": 67,
+  "motos": 12,
+  "total": 79,
+  "latitude": "22°25.7'S",
+  "longitude": "46°50.4'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984dda8"
+  },
+  "data": "17/10/2024",
+  "horario": "03:00",
+  "carros": 75,
+  "motos": 15,
+  "total": 90,
+  "latitude": "22°26.3'S",
+  "longitude": "46°50.3'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984dda9"
+  },
+  "data": "17/10/2024",
+  "horario": "07:00",
+  "carros": 93,
+  "motos": 22,
+  "total": 115,
+  "latitude": "22°25.4'S",
+  "longitude": "46°49.4'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddaa"
+  },
+  "data": "17/10/2024",
+  "horario": "00:00",
+  "carros": 32,
+  "motos": 18,
+  "total": 50,
+  "latitude": "22°25.6'S",
+  "longitude": "46°50.1'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddab"
+  },
+  "data": "16/10/2024",
+  "horario": "20:00",
+  "carros": 26,
+  "motos": 44,
+  "total": 70,
+  "latitude": "22°25.4'S",
+  "longitude": "46°49.9'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddac"
+  },
+  "data": "16/10/2024",
+  "horario": "09:00",
+  "carros": 87,
+  "motos": 16,
+  "total": 103,
+  "latitude": "22°25.9'S",
+  "longitude": "46°50.2'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddad"
+  },
+  "data": "17/10/2024",
+  "horario": "23:00",
+  "carros": 99,
+  "motos": 7,
+  "total": 106,
+  "latitude": "22°25.3'S",
+  "longitude": "46°50.0'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddae"
+  },
+  "data": "16/10/2024",
+  "horario": "04:00",
+  "carros": 38,
+  "motos": 31,
+  "total": 69,
+  "latitude": "22°26.2'S",
+  "longitude": "46°50.4'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddaf"
+  },
+  "data": "16/10/2024",
+  "horario": "21:00",
+  "carros": 0,
+  "motos": 3,
+  "total": 3,
+  "latitude": "22°25.7'S",
+  "longitude": "46°49.4'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddb0"
+  },
+  "data": "17/10/2024",
+  "horario": "22:00",
+  "carros": 15,
+  "motos": 18,
+  "total": 33,
+  "latitude": "22°25.8'S",
+  "longitude": "46°49.6'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddb1"
+  },
+  "data": "17/10/2024",
+  "horario": "18:00",
+  "carros": 28,
+  "motos": 15,
+  "total": 43,
+  "latitude": "22°26.3'S",
+  "longitude": "46°49.6'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddb2"
+  },
+  "data": "17/10/2024",
+  "horario": "22:00",
+  "carros": 68,
+  "motos": 17,
+  "total": 85,
+  "latitude": "22°26.4'S",
+  "longitude": "46°49.8'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddb3"
+  },
+  "data": "17/10/2024",
+  "horario": "23:00",
+  "carros": 20,
+  "motos": 32,
+  "total": 52,
+  "latitude": "22°26.0'S",
+  "longitude": "46°50.2'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddb4"
+  },
+  "data": "16/10/2024",
+  "horario": "12:00",
+  "carros": 96,
+  "motos": 0,
+  "total": 96,
+  "latitude": "22°26.4'S",
+  "longitude": "46°49.9'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddb5"
+  },
+  "data": "16/10/2024",
+  "horario": "14:00",
+  "carros": 2,
+  "motos": 13,
+  "total": 15,
+  "latitude": "22°25.9'S",
+  "longitude": "46°50.3'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddb6"
+  },
+  "data": "16/10/2024",
+  "horario": "14:00",
+  "carros": 42,
+  "motos": 30,
+  "total": 72,
+  "latitude": "22°25.5'S",
+  "longitude": "46°50.1'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddb7"
+  },
+  "data": "17/10/2024",
+  "horario": "06:00",
+  "carros": 26,
+  "motos": 19,
+  "total": 45,
+  "latitude": "22°26.3'S",
+  "longitude": "46°50.1'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddb8"
+  },
+  "data": "16/10/2024",
+  "horario": "19:00",
+  "carros": 79,
+  "motos": 7,
+  "total": 86,
+  "latitude": "22°26.2'S",
+  "longitude": "46°50.0'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddb9"
+  },
+  "data": "16/10/2024",
+  "horario": "21:00",
+  "carros": 96,
+  "motos": 28,
+  "total": 124,
+  "latitude": "22°25.5'S",
+  "longitude": "46°50.4'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddba"
+  },
+  "data": "16/10/2024",
+  "horario": "15:00",
+  "carros": 47,
+  "motos": 9,
+  "total": 56,
+  "latitude": "22°26.4'S",
+  "longitude": "46°49.9'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddbb"
+  },
+  "data": "17/10/2024",
+  "horario": "06:00",
+  "carros": 54,
+  "motos": 44,
+  "total": 98,
+  "latitude": "22°25.4'S",
+  "longitude": "46°50.2'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddbc"
+  },
+  "data": "17/10/2024",
+  "horario": "06:00",
+  "carros": 96,
+  "motos": 28,
+  "total": 124,
+  "latitude": "22°25.4'S",
+  "longitude": "46°49.9'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddbd"
+  },
+  "data": "17/10/2024",
+  "horario": "01:00",
+  "carros": 76,
+  "motos": 19,
+  "total": 95,
+  "latitude": "22°25.8'S",
+  "longitude": "46°50.0'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddbe"
+  },
+  "data": "17/10/2024",
+  "horario": "23:00",
+  "carros": 12,
+  "motos": 33,
+  "total": 45,
+  "latitude": "22°25.4'S",
+  "longitude": "46°49.5'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddbf"
+  },
+  "data": "17/10/2024",
+  "horario": "15:00",
+  "carros": 93,
+  "motos": 38,
+  "total": 131,
+  "latitude": "22°26.2'S",
+  "longitude": "46°50.4'W"
+},
+{
+  "_id": {
+    "$oid": "670ffb47243abebcf984ddc0"
+  },
+  "data": "17/10/2024",
+  "horario": "15:00",
+  "carros": 55,
+  "motos": 6,
+  "total": 61,
+  "latitude": "22°26.1'S",
+  "longitude": "46°49.5'W"
+}]
