@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import plotly.express as pe
 import pymongo as pm
 def decimal_to_degree(formato):
@@ -128,6 +129,7 @@ df_filtered1['Quantidade de motos '] = df_filtered['carros'].apply(lambda x : f'
 # df_filtered1['Horário '] = df_filtered['horario'].apply(lambda x : f' {x}')
 # df_filtered1['Data '] = df_filtered1['data'].apply(lambda x : f' {x}')
 
+df_filtered1['size_column'] = df_filtered1['total'].apply(lambda x: x if x != 0 else 0.1)
 
 st.dataframe(df_filtered1)
 density_map = pe.scatter_mapbox(
@@ -137,7 +139,7 @@ density_map = pe.scatter_mapbox(
     mapbox_style="carto-darkmatter",
     center={'lat': -22.436491574441884, 'lon': -46.823405867130425},
     zoom=14,
-    size='total',
+    size='size_column' ,
     range_color=[10 , 60],  
     color_continuous_scale='color',#["rgba(0, 0, 255, 1.0)","rgba(0, 255, 0, 1.0)","rgba(255, 0, 0, 1.0)"],#["green", "red"],
     opacity=0.6,
