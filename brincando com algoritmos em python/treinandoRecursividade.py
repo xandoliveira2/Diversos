@@ -51,3 +51,43 @@ print(caminho)
 
 
 #tentando mapear 'ilhas'
+ilha1=[
+    list('1110'),
+    list('1100'),
+    list('1000'),
+]
+ilha2=[
+    list('111000011'),
+    list('111100011'),
+    list('001000001'),
+    list('001100000'),
+    list('000000111'),
+]
+quantidade = 0
+def definir_possibilidades(matriz):
+    x=[i for i in range(len(matriz))]
+    y=[i for i in range(len(matriz[0]))]
+    combinations = []
+    
+    for i in x:
+        for j in y:
+            combinations.append((i,j))
+    return combinations
+
+def quantidade_ilhas(matriz):
+    combinations = definir_possibilidades(matriz)
+    quantidade = 0
+    verificados = []
+    def verificar_ilhas(cordenadas):
+        x= cordenadas[0]
+        y=cordenadas[1]
+        if matriz[x][y] == 0:
+            return
+        else:
+            print(x,y)
+            verificados.append((x,y))
+            verificar_ilhas((x+1,y)),verificar_ilhas((x-1,y)),verificar_ilhas((x,y-1)),verificar_ilhas((x,y+1))
+    verificar_ilhas((0,0))
+    print(verificados)
+    
+quantidade_ilhas(ilha1)
