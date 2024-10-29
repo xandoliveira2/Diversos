@@ -12,11 +12,12 @@
   </head>
   <body>
     <div class="container">
+    
     <h1>testando sobre o gráfico</h1>
     <label for="data_form">Escolha o dia:</label>
     <select class="form-select" aria-label="Default select example" id="data_form">
-      { % block 'forms' % }
-      { % endblock % }
+      {% block 'forms' %}
+      {% endblock %}
     </select>
       <section >
         {% block 'dashboard1' %}

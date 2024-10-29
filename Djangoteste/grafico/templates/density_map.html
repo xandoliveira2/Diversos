@@ -1,28 +1,30 @@
 {% extends "base.html" %}
+
 {% block 'forms' %}
+
 <script>
 
-// fetch('density-map/requisicao').then(response => response.json()).then(
-//     data => { 
-        
-//         console.log(data)
-//         const select_dia = document.getElementById('data_form');
-//         data.coluna.forEach(item => {
-//                     const option = document.createElement('option');
-//                     option.value = item;      
-//                     option.textContent = item; 
-//                     select_dia.appendChild(option); 
-//                 });
-//             }).catch(
-//                 error => console.error('Erro:', error));
+fetch('requisicao').then(response => response.json()).then( //http://localhost:8000/grafico/density-map/requisicao
+    data => { 
+       
+        console.log(data)
+        const select_dia = document.getElementById('data_form');
+        data.dados.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item;      
+                    option.textContent = item; 
+                    select_dia.appendChild(option); 
+                });
+            }).catch(
+                error => console.error('Erro:', error));
 
 </script>
 
 {% endblock %}
+
 {% block 'dashboard1' %}
     <h1>Mapa de Densidade com Filtro</h1>
 
-   
 
     
         {{ grafico_html|safe }}

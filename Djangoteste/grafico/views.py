@@ -125,8 +125,7 @@ df['size_column'] = df['total'].apply(lambda x: x if x != 0 else 0.1)
     
 
 def enviar_coluna_data(request):
-    coluna_dados = df['data'].tolist()
-    print(coluna_dados)
+    coluna_dados = df['data'].unique().tolist()
     return JsonResponse({'dados':coluna_dados})
     
 def density_map_view(request):
