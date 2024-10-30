@@ -6,6 +6,8 @@ import plotly.express as pe
 from plotly.offline import plot
 import pandas as pd
 import pymongo as pm
+from django.views.decorators.csrf import csrf_exempt
+import json
 def hours_to_decimals_convertion(formato:str):
     """
     formato : horas:minutos:segundos:direção (latitude e longitude)\n
@@ -122,14 +124,24 @@ df['size_column'] = df['total'].apply(lambda x: x if x != 0 else 0.1)
 #     df = df.sort_values('data')
 #     data_choices = [(data, data) for data in df['data'].unique()]
 #     dia = forms.ChoiceField(choices=data_choices)
-    
+@csrf_exempt
+def recebe_data(request):
+    if request.method == "POST":
+        dados = json.loads(request.body)
+        dado_recebido = dados.get('data')
+        
+        return JsonResponse({'status':'sucesso','dado_recebido':dado_recebido})
+    else:
+        return JsonResponse({'erro':'Método não permitido'},status=405)
 
 def enviar_coluna_data(request):
     coluna_dados = df['data'].unique().tolist()
     return JsonResponse({'dados':coluna_dados})
     
 def density_map_view(request):
-    df_filtered1 = df
+    
+    
+    df_filtered1 = df#[df["data"] == filtro]
     df_filtered1['Total de veículos '] = df_filtered1   ['total'].apply(lambda x : f' {x}')
     df_filtered1['Quantidade de carros '] = df_filtered1['motos'].apply(lambda x : f' {x}')
     df_filtered1['Quantidade de motos '] = df_filtered1['carros'].apply(lambda x : f' {x}')

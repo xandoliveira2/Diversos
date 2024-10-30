@@ -2,7 +2,9 @@
 <html lang="en">
   <head>
     <style>
+   
       section label{font-size: 30px;}
+    
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,11 +17,12 @@
     
     <h1>testando sobre o gráfico</h1>
     <label for="data_form">Escolha o dia:</label>
-    <select class="form-select" aria-label="Default select example" id="data_form">
+    <select class="form-select" aria-label="Default select example" id="data_form" name="data_form" style="width: fit-content;" onclick="mandarvalores()">
       {% block 'forms' %}
       {% endblock %}
     </select>
-      <section >
+    <h1>Mapa de Densidade com Filtro</h1>
+      <section>
         {% block 'dashboard1' %}
         {% endblock %}
      

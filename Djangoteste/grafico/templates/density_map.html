@@ -18,12 +18,51 @@ fetch('requisicao').then(response => response.json()).then( //http://localhost:8
             }).catch(
                 error => console.error('Erro:', error));
 
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    
+document.addEventListener("DOMContentLoaded", evento =>{
+    const data = {'data':document.getElementById('data_form').value}
+    const csrftoken = getCookie('csrftoken');
+    fetch('receber-dado/',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json',
+            'X-CSRFToken': csrftoken  // Importante para requisições autenticadas em Django senão vai ser erro 403
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response=>response.json())
+    .then(data => {
+        console.log("Resposta do servidor:",data)
+    })
+    .catch(error =>{console.error("Erro:",error)})
+})
+function mandarvalores(){
+    const data = {'data':document.getElementById('data_form').value}
+}
+
+
+
+
 </script>
 
 {% endblock %}
 
 {% block 'dashboard1' %}
-    <h1>Mapa de Densidade com Filtro</h1>
+    
 
 
     
