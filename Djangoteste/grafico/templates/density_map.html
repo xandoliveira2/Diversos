@@ -6,7 +6,6 @@
 
 fetch('requisicao').then(response => response.json()).then( //http://localhost:8000/grafico/density-map/requisicao
     data => { 
-       
         // console.log(data)
         const select_dia = document.getElementById('data_form');
         data.dados.forEach(item => {
@@ -151,7 +150,7 @@ fetch('requisicao').then(response => response.json()).then( //http://localhost:8
                         window.history.pushState({path : url},'',url)
                     },
                     error: function(xhr, status, error) {
-                        window.history.pushState({path : url},'',url)
+                        // window.history.pushState({path : url},'',url)
                         console.error("Erro:", error);
                     }
                 });}
@@ -163,6 +162,8 @@ fetch('requisicao').then(response => response.json()).then( //http://localhost:8
 
 
     function atualizar_horarios(){
+        localStorage.clear()
+        sessionStorage.clear()
         const data_formulario = document.getElementById('data_form').value;
         fetch(`requisicao/horarios?param1=${data_formulario}`)
         .then(response => {
@@ -322,7 +323,7 @@ fetch('requisicao').then(response => response.json()).then( //http://localhost:8
                         window.history.pushState({path : url},'',url)
                     },
                     error: function(xhr, status, error) {
-                        window.history.pushState({path : url},'',url)
+                     
                         console.error("Erro:", error);
                     }
                 });
