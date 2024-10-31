@@ -7,7 +7,7 @@
 fetch('requisicao').then(response => response.json()).then( //http://localhost:8000/grafico/density-map/requisicao
     data => { 
        
-        console.log(data)
+        // console.log(data)
         const select_dia = document.getElementById('data_form');
         data.dados.forEach(item => {
                     const option = document.createElement('option');
@@ -18,20 +18,20 @@ fetch('requisicao').then(response => response.json()).then( //http://localhost:8
             }).catch(
                 error => console.error('Erro:', error));
 
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
+    // function getCookie(name) {
+    //     let cookieValue = null;
+    //     if (document.cookie && document.cookie !== '') {
+    //         const cookies = document.cookie.split(';');
+    //         for (let i = 0; i < cookies.length; i++) {
+    //             const cookie = cookies[i].trim();
+    //             if (cookie.substring(0, name.length + 1) === (name + '=')) {
+    //                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     return cookieValue;
+    // }
     
 // document.addEventListener("DOMContentLoaded", evento =>{
 //     const data = {'data':document.getElementById('data_form').value}
@@ -67,27 +67,27 @@ fetch('requisicao').then(response => response.json()).then( //http://localhost:8
 // function mandarvalores(){
 //     const data = {'data':document.getElementById('data_form').value}
 // }
-function atualizar_url(){
+// function atualizar_url(){
     
-$('#data_form').click(function() {
-            const dado = document.getElementById('data_form').value;  // Este é o dado que queremos enviar
-            const url = `/density-map/?param1=${dado}`;  // Passando o dado pela URL
+// $('#data_form').click(function() {
+//             const dado = document.getElementById('data_form').value;  // Este é o dado que queremos enviar
+//             const url = `/density-map/?param1=${dado}`;  // Passando o dado pela URL
 
-            $.ajax({
-                url: url,
-                type: 'GET',
-                success: function(response) {
-                    console.log("Resposta do servidor:", response);
-                    window.history.pushState({path : url},'',url)
-                },
-                error: function(xhr, status, error) {
-                    window.history.pushState({path : url},'',url)
-                    console.error("Erro:", error);
-                }
-            });
-        });
+//             $.ajax({
+//                 url: url,
+//                 type: 'GET',
+//                 success: function(response) {
+//                     console.log("Resposta do servidor:", response);
+//                     window.history.pushState({path : url},'',url)
+//                 },
+//                 error: function(xhr, status, error) {
+//                     window.history.pushState({path : url},'',url)
+//                     console.error("Erro:", error);
+//                 }
+//             });
+//         });
 
-    }
+//     }
 
 </script>
 
@@ -97,7 +97,7 @@ $('#data_form').click(function() {
 
 <script>
     document.addEventListener("DOMContentLoaded", evento =>{
-
+        let ajaxExecuted = false;
         const horas = {'horas':document.getElementById('hour_form').value}
         const data= document.getElementById('data_form').value; 
 
@@ -128,7 +128,8 @@ $('#data_form').click(function() {
         return response.json();
     })
     .then(data => { 
-        const select_hora = document.getElementById('hour_form');
+        
+        select_hora = document.getElementById('hour_form');
         
         data.horas.forEach(item => {
             const option = document.createElement('option');
@@ -141,44 +142,67 @@ $('#data_form').click(function() {
         const hora = select_hora.value; // Aqui você pode usar o valor padrão ou o selecionado
         const data1= document.getElementById('data_form').value; 
         const url = `/grafico/density-map/?param1=${data1}&param2=${hora}`;
-      
+        if (!ajaxExecuted) {
         $.ajax({
                     url: url,
                     type: 'GET',
                     success: function(response) {
-                        console.log("Resposta do servidor:", response);
+                        // console.log("Resposta do servidor:", response);
                         window.history.pushState({path : url},'',url)
                     },
                     error: function(xhr, status, error) {
                         window.history.pushState({path : url},'',url)
                         console.error("Erro:", error);
                     }
-                });
+                });}
         // Se você quiser executar alguma outra lógica com a hora, faça aqui
     })
     .catch(error => console.error('Erro:', error));
     
+});
 
 
+    function atualizar_horarios(){
+        const data_formulario = document.getElementById('data_form').value;
+        fetch(`requisicao/horarios?param1=${data_formulario}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro na rede: ${response.statusText}`);
+            }
+            return response.json(); // Converte a resposta para JSON
+        })
+    .then(data => { 
+       
+        select_hora = document.getElementById('hour_form');
+        while (select_hora.firstChild){
+            select_hora.removeChild(select_hora.firstChild);
+        }
+        data.horas.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item;      
+            option.textContent = item; 
+            select_hora.appendChild(option); 
+        });
 
-
+    })}
 
       
         
-        const csrftoken = getCookie('csrftoken');
-        fetch('receber-dado/',{
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json',
-                'X-CSRFToken': csrftoken  // Importante para requisições autenticadas em Django senão vai ser erro 403
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response=>response.json())
-        .then(data => {
-            console.log("Resposta do servidor:",data)
-        })
-        .catch(error =>{console.error("Erro:",error)})
+        // const csrftoken = getCookie('csrftoken');
+        // fetch('receber-dado/',{
+        //     method:'POST',
+        //     headers:{
+        //         'Content-Type':'application/json',
+        //         'X-CSRFToken': csrftoken  // Importante para requisições autenticadas em Django senão vai ser erro 403
+        //     },
+        //     body: JSON.stringify(data)
+        // })
+        // .then(response=>response.json())
+        // .then(data => {
+        //     console.log("Resposta do servidor:",data)
+        // })
+        // .catch(error =>{console.error("Erro:",error)})  
+    
     // const data_param = document.getElementById('data_form').value;   
     // // window.alert(data_param)
     
@@ -195,7 +219,7 @@ $('#data_form').click(function() {
     //                 });
     //             }).catch(
     //                 error => console.error('Erro:', error));
-      });
+    
 //       document.addEventListener("DOMContentLoaded", evento => {
 //     const data_param = document.getElementById('data_form').value;   
 //     window.alert(data_param); // Alerta com o valor de data_param       // -->> chatGPT
@@ -231,20 +255,20 @@ $('#data_form').click(function() {
 //         })
 //         .catch(error => console.error('Erro:', error));
 // });
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
+        // function getCookie(name) {
+        //     let cookieValue = null;
+        //     if (document.cookie && document.cookie !== '') {
+        //         const cookies = document.cookie.split(';');
+        //         for (let i = 0; i < cookies.length; i++) {
+        //             const cookie = cookies[i].trim();
+        //             if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        //                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        //                 break;
+        //             }
+        //         }
+        //     }
+        //     return cookieValue;
+        // }
   
     // document.addEventListener("DOMContentLoaded", evento =>{
     //     const horas = {'horas':document.getElementById('hour_form').value}
@@ -292,8 +316,9 @@ $('#data_form').click(function() {
                 $.ajax({
                     url: url,
                     type: 'GET',
+                 
                     success: function(response) {
-                        console.log("Resposta do servidor:", response);
+                        // console.log("Resposta do servidor:", response);
                         window.history.pushState({path : url},'',url)
                     },
                     error: function(xhr, status, error) {

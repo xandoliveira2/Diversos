@@ -69,6 +69,7 @@ df['identificador_rua'] = df['latitude_atualizada'].astype(str)+df['longitude_at
 df['data'] = pd.to_datetime(df['data'],format='%d/%m/%Y') 
 df['data'] = df['data'].dt.strftime('%d/%m/%Y') 
 df['size_column'] = df['total'].apply(lambda x: x if x != 0 else 0.1)
+df = df.sort_values('data')
 # Importações necessárias
 
 # Classe do formulário
@@ -136,18 +137,23 @@ def recebe_data(request):
 
 
 def enviar_coluna_data(request):
+
     coluna_dados = df['data'].unique().tolist()
+   
     return JsonResponse({'dados':coluna_dados})
 
 def enviar_coluna_horarios(request):
     data = request.GET.get('param1')
     horas = df[df['data']==data]['horario'].unique().tolist()
+    horas = sorted(horas)
+    
     return JsonResponse({'horas':horas})
     
 def density_map_view(request):
-    filtro = request.GET.get('param1')
+    filtro_data = request.GET.get('param1')
+    filtro_hora = request.GET.get('param2')
     
-    df_filtered1 = df[df["data"] == filtro]
+    df_filtered1 = df[(df['horario']==filtro_hora) & (df['data'] == filtro_data)]
     df_filtered1['Total de veículos '] = df_filtered1   ['total'].apply(lambda x : f' {x}')
     df_filtered1['Quantidade de carros '] = df_filtered1['motos'].apply(lambda x : f' {x}')
     df_filtered1['Quantidade de motos '] = df_filtered1['carros'].apply(lambda x : f' {x}')
@@ -179,7 +185,10 @@ def density_map_view(request):
     return render(request, 'density_map.html',{'grafico_html':grafico_html})
 
 def update_map(request):
-    df_filtered1 = df
+    filtro_data = request.GET.get('param1')
+    filtro_hora = request.GET.get('param2')
+    
+    df_filtered1 = df[(df['horario']==filtro_hora) & (df['data'] == filtro_data)]
     df_filtered1['Total de veículos '] = df_filtered1   ['total'].apply(lambda x : f' {x}')
     df_filtered1['Quantidade de carros '] = df_filtered1['motos'].apply(lambda x : f' {x}')
     df_filtered1['Quantidade de motos '] = df_filtered1['carros'].apply(lambda x : f' {x}')
