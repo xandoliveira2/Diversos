@@ -134,14 +134,20 @@ def recebe_data(request):
     else:
         return JsonResponse({'erro':'Método não permitido'},status=405)
 
+
 def enviar_coluna_data(request):
     coluna_dados = df['data'].unique().tolist()
     return JsonResponse({'dados':coluna_dados})
+
+def enviar_coluna_horarios(request):
+    data = request.GET.get('param1')
+    horas = df[df['data']==data]['horario'].unique().tolist()
+    return JsonResponse({'horas':horas})
     
 def density_map_view(request):
+    filtro = request.GET.get('param1')
     
-    
-    df_filtered1 = df#[df["data"] == filtro]
+    df_filtered1 = df[df["data"] == filtro]
     df_filtered1['Total de veículos '] = df_filtered1   ['total'].apply(lambda x : f' {x}')
     df_filtered1['Quantidade de carros '] = df_filtered1['motos'].apply(lambda x : f' {x}')
     df_filtered1['Quantidade de motos '] = df_filtered1['carros'].apply(lambda x : f' {x}')

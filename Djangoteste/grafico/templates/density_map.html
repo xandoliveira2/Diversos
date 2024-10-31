@@ -33,33 +33,282 @@ fetch('requisicao').then(response => response.json()).then( //http://localhost:8
         return cookieValue;
     }
     
-document.addEventListener("DOMContentLoaded", evento =>{
-    const data = {'data':document.getElementById('data_form').value}
-    const csrftoken = getCookie('csrftoken');
-    fetch('receber-dado/',{
-        method:'POST',
-        headers:{
-            'Content-Type':'application/json',
-            'X-CSRFToken': csrftoken  // Importante para requisições autenticadas em Django senão vai ser erro 403
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response=>response.json())
-    .then(data => {
-        console.log("Resposta do servidor:",data)
-    })
-    .catch(error =>{console.error("Erro:",error)})
-})
-function mandarvalores(){
-    const data = {'data':document.getElementById('data_form').value}
-}
+// document.addEventListener("DOMContentLoaded", evento =>{
+//     const data = {'data':document.getElementById('data_form').value}
+//     const dado = document.getElementById('data_form').value; 
+//     const url = `/grafico/density-map/?param1=${dado}`;
+//     $.ajax({
+//                 url: url,
+//                 type: 'GET',
+//                 success: function(response) {
+//                     console.log("Resposta do servidor:", response);
+//                     window.history.pushState({path : url},'',url)
+//                 },
+//                 error: function(xhr, status, error) {
+//                     window.history.pushState({path : url},'',url)
+//                     console.error("Erro:", error);
+//                 }
+//             });
+//     const csrftoken = getCookie('csrftoken');
+//     fetch('receber-dado/',{
+//         method:'POST',
+//         headers:{
+//             'Content-Type':'application/json',
+//             'X-CSRFToken': csrftoken  // Importante para requisições autenticadas em Django senão vai ser erro 403
+//         },
+//         body: JSON.stringify(data)
+//     })
+//     .then(response=>response.json())
+//     .then(data => {
+//         console.log("Resposta do servidor:",data)
+//     })
+//     .catch(error =>{console.error("Erro:",error)})
+// })
+// function mandarvalores(){
+//     const data = {'data':document.getElementById('data_form').value}
+// }
+function atualizar_url(){
+    
+$('#data_form').click(function() {
+            const dado = document.getElementById('data_form').value;  // Este é o dado que queremos enviar
+            const url = `/density-map/?param1=${dado}`;  // Passando o dado pela URL
 
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(response) {
+                    console.log("Resposta do servidor:", response);
+                    window.history.pushState({path : url},'',url)
+                },
+                error: function(xhr, status, error) {
+                    window.history.pushState({path : url},'',url)
+                    console.error("Erro:", error);
+                }
+            });
+        });
 
-
+    }
 
 </script>
 
 {% endblock %}
+
+{% block 'hours_form' %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", evento =>{
+
+        const horas = {'horas':document.getElementById('hour_form').value}
+        const data= document.getElementById('data_form').value; 
+
+        // const data_param = document.getElementById('data_form').value;   
+    // window.alert(data_param)
+    
+    // fetch(`requisicao/horarios?param1=${data}`).then(response => response.json()).then( //http://localhost:8000/grafico/density-map/requisicao
+    //     data => { 
+            
+    //         // window.alert(JSON.stringify(data));
+    //         const select_hora = document.getElementById('hour_form');
+    //         data.horas.forEach(item => {
+    //                     const option = document.createElement('option');
+    //                     option.value = item;      
+    //                     option.textContent = item; 
+    //                     select_hora.appendChild(option); 
+    //                 });
+    //             }).catch(
+    //                 error => console.error('Erro:', error));
+    //     const hora = document.getElementById('hour_form').value; 
+
+
+    fetch(`requisicao/horarios?param1=${data}`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Erro na rede: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(data => { 
+        const select_hora = document.getElementById('hour_form');
+        
+        data.horas.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item;      
+            option.textContent = item; 
+            select_hora.appendChild(option); 
+        });
+
+        // Aqui você pode pegar o valor da hora depois que as opções foram adicionadas
+        const hora = select_hora.value; // Aqui você pode usar o valor padrão ou o selecionado
+        const data1= document.getElementById('data_form').value; 
+        const url = `/grafico/density-map/?param1=${data1}&param2=${hora}`;
+      
+        $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(response) {
+                        console.log("Resposta do servidor:", response);
+                        window.history.pushState({path : url},'',url)
+                    },
+                    error: function(xhr, status, error) {
+                        window.history.pushState({path : url},'',url)
+                        console.error("Erro:", error);
+                    }
+                });
+        // Se você quiser executar alguma outra lógica com a hora, faça aqui
+    })
+    .catch(error => console.error('Erro:', error));
+    
+
+
+
+
+
+      
+        
+        const csrftoken = getCookie('csrftoken');
+        fetch('receber-dado/',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+                'X-CSRFToken': csrftoken  // Importante para requisições autenticadas em Django senão vai ser erro 403
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response=>response.json())
+        .then(data => {
+            console.log("Resposta do servidor:",data)
+        })
+        .catch(error =>{console.error("Erro:",error)})
+    // const data_param = document.getElementById('data_form').value;   
+    // // window.alert(data_param)
+    
+    // fetch(`requisicao/horarios?param1=${data_param}`).then(response => response.json()).then( //http://localhost:8000/grafico/density-map/requisicao
+    //     data => { 
+            
+    //         // window.alert(JSON.stringify(data));
+    //         const select_hora = document.getElementById('hour_form');
+    //         data.horas.forEach(item => {
+    //                     const option = document.createElement('option');
+    //                     option.value = item;      
+    //                     option.textContent = item; 
+    //                     select_hora.appendChild(option); 
+    //                 });
+    //             }).catch(
+    //                 error => console.error('Erro:', error));
+      });
+//       document.addEventListener("DOMContentLoaded", evento => {
+//     const data_param = document.getElementById('data_form').value;   
+//     window.alert(data_param); // Alerta com o valor de data_param       // -->> chatGPT
+
+//     // Você pode querer abrir a URL em uma nova aba, mas cuidado com o uso de window.open
+//     // Pode ser que você não precise dessa linha, dependendo do que quer fazer
+//     // window.open(`requisicao/horarios?param1=${data_param}`); 
+
+//     fetch(`requisicao/horarios?param1=${data_param}`)
+//         .then(response => {
+//             // Verifica se a resposta foi bem-sucedida
+//             if (!response.ok) {
+//                 throw new Error(`Erro na rede: ${response.statusText}`);
+//             }
+//             return response.json(); // Converte a resposta para JSON
+//         })
+//         .then(data => { 
+//             console.log(data);
+//             window.alert(JSON.stringify(data)); // Alerta com os dados retornados
+
+//             // Verifica se data.horas existe antes de tentar iterar
+//             if (data.horas && Array.isArray(data.horas)) {
+//                 const select_hora = document.getElementById('hours_form');
+//                 data.horas.forEach(item => {
+//                     const option = document.createElement('option');
+//                     option.value = item;      
+//                     option.textContent = item; 
+//                     select_hora.appendChild(option); 
+//                 });
+//             } else {
+//                 console.warn("Nenhuma hora encontrada ou formato inesperado:", data);
+//             }
+//         })
+//         .catch(error => console.error('Erro:', error));
+// });
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+  
+    // document.addEventListener("DOMContentLoaded", evento =>{
+    //     const horas = {'horas':document.getElementById('hour_form').value}
+    //     const dado = document.getElementById('data_form').value; 
+    //     const hora = document.getElementById('hour_form').value; 
+    //     const url = `/grafico/density-map/?param1=${dado}&param2=${hora}`;
+    //     $.ajax({
+    //                 url: url,
+    //                 type: 'GET',
+    //                 success: function(response) {
+    //                     console.log("Resposta do servidor:", response);
+    //                     window.history.pushState({path : url},'',url)
+    //                 },
+    //                 error: function(xhr, status, error) {
+    //                     window.history.pushState({path : url},'',url)
+    //                     console.error("Erro:", error);
+    //                 }
+    //             });
+    //     const csrftoken = getCookie('csrftoken');
+    //     fetch('receber-dado/',{
+    //         method:'POST',
+    //         headers:{
+    //             'Content-Type':'application/json',
+    //             'X-CSRFToken': csrftoken  // Importante para requisições autenticadas em Django senão vai ser erro 403
+    //         },
+    //         body: JSON.stringify(data)
+    //     })
+    //     .then(response=>response.json())
+    //     .then(data => {
+    //         console.log("Resposta do servidor:",data)
+    //     })
+    //     .catch(error =>{console.error("Erro:",error)})
+    // })
+    // function mandarvalores1(){
+    //     const data = {'horas':document.getElementById('hour_form').value}
+    // }
+    function atualizar_url1(){
+        
+    $('#hour_form , #data_form').click(function() {
+                const dado = document.getElementById('data_form').value;  // Este é o dado que queremos enviar
+                const hora = document.getElementById('hour_form').value;
+              
+                const url = `/grafico/density-map/?param1=${dado}&param2=${hora}`  // Passando o dado pela URL
+    
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(response) {
+                        console.log("Resposta do servidor:", response);
+                        window.history.pushState({path : url},'',url)
+                    },
+                    error: function(xhr, status, error) {
+                        window.history.pushState({path : url},'',url)
+                        console.error("Erro:", error);
+                    }
+                });
+            });
+    
+        }
+    
+    </script>
+
+{% endblock %}
+
 
 {% block 'dashboard1' %}
     
