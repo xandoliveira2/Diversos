@@ -8,6 +8,8 @@ import pandas as pd
 import pymongo as pm
 from django.views.decorators.csrf import csrf_exempt
 import json
+import plotly.graph_objs as go
+import numpy as np
 def hours_to_decimals_convertion(formato:str):
     """
     formato : horas:minutos:segundos:direção (latitude e longitude)\n
@@ -49,15 +51,15 @@ def dcolor(value:int|float) -> str:
     verde para menores que 16\n
     opacidade 55 representado em hexadecimal equivale a 33% de opacidade"""
     if value > 50:
-        return '#ff000055'
+        return '#ff0000'
     elif value > 35:
-        return '#ffa50055'
+        return '#ffa500'
     elif value > 25:
-        return '#ffff0055'
+        return '#ffff00'
     elif value > 15:
-        return '#0000ff55'
+        return '#0000ff'
     else:
-        return '#00ff0055'
+        return '#00ff00'
 client = pm.MongoClient('mongodb://localhost:27017/')
 db = client['teste']
 collection = db['simlulandodados1']
@@ -217,5 +219,7 @@ def update_map(request):
     grafico_html = plot(density_map,output_type='div')
     # density_map_json = density_map.to_json()
     
+  
+    # return JsonResponse({'grafico_html':grafico_html})
     return render(request, 'density_map.html',{'grafico_html':grafico_html})
 # Create your views here

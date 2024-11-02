@@ -94,6 +94,7 @@ fetch('requisicao').then(response => response.json()).then( //http://localhost:8
 
 {% block 'hours_form' %}
 
+
 <script>
     document.addEventListener("DOMContentLoaded", evento =>{
         let ajaxExecuted = false;
@@ -141,19 +142,19 @@ fetch('requisicao').then(response => response.json()).then( //http://localhost:8
         const hora = select_hora.value; // Aqui você pode usar o valor padrão ou o selecionado
         const data1= document.getElementById('data_form').value; 
         const url = `/grafico/density-map/?param1=${data1}&param2=${hora}`;
-        if (!ajaxExecuted) {
-        $.ajax({
-                    url: url,
-                    type: 'GET',
-                    success: function(response) {
-                        // console.log("Resposta do servidor:", response);
-                        window.history.pushState({path : url},'',url)
-                    },
-                    error: function(xhr, status, error) {
-                        // window.history.pushState({path : url},'',url)
-                        console.error("Erro:", error);
-                    }
-                });}
+        // if (!ajaxExecuted) {
+        // $.ajax({
+        //             url: url,
+        //             type: 'GET',
+        //             success: function(response) {
+        //                 // console.log("Resposta do servidor:", response);
+        //                 window.history.pushState({path : url},'',url)
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 // window.history.pushState({path : url},'',url)
+        //                 console.error("Erro:", error);
+        //             }
+        //         });}
         // Se você quiser executar alguma outra lógica com a hora, faça aqui
     })
     .catch(error => console.error('Erro:', error));
@@ -330,20 +331,26 @@ fetch('requisicao').then(response => response.json()).then( //http://localhost:8
             });
     
         }
-    
+        function atualizarMapaComParametros(){
+            // const url = new URL(window.location);
+            const data = document.getElementById('data_form').value;
+            const hora = document.getElementById('hour_form').value;
+            const url = `http://localhost:8000/grafico/density-map/?param1=${data}&param2=${hora}`
+            window.history.pushState({path : url},'',url)
+            window.location.href = url
+        }
     </script>
 
 {% endblock %}
 
 
 {% block 'dashboard1' %}
-    
+   
 
 
-    
-        {{ grafico_html|safe }}
- 
+        {{ grafico_html|safe }} 
 
-    
+
+
 
 {% endblock %}
