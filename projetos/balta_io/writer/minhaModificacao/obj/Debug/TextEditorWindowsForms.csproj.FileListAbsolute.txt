@@ -1,0 +1,10 @@
+C:\Users\Desktop\TextEditor\TextEditorWindowsForms\bin\Debug\TextEditorWindowsForms.exe.config
+C:\Users\Desktop\TextEditor\TextEditorWindowsForms\bin\Debug\TextEditorWindowsForms.exe
+C:\Users\Desktop\TextEditor\TextEditorWindowsForms\bin\Debug\TextEditorWindowsForms.pdb
+C:\Users\Desktop\TextEditor\TextEditorWindowsForms\obj\Debug\TextEditorWindowsForms.csproj.AssemblyReference.cache
+C:\Users\Desktop\TextEditor\TextEditorWindowsForms\obj\Debug\TextEditorWindowsForms.Form1.resources
+C:\Users\Desktop\TextEditor\TextEditorWindowsForms\obj\Debug\TextEditorWindowsForms.Properties.Resources.resources
+C:\Users\Desktop\TextEditor\TextEditorWindowsForms\obj\Debug\TextEditorWindowsForms.csproj.GenerateResource.cache
+C:\Users\Desktop\TextEditor\TextEditorWindowsForms\obj\Debug\TextEditorWindowsForms.csproj.CoreCompileInputs.cache
+C:\Users\Desktop\TextEditor\TextEditorWindowsForms\obj\Debug\TextEditorWindowsForms.exe
+C:\Users\Desktop\TextEditor\TextEditorWindowsForms\obj\Debug\TextEditorWindowsForms.pdb
