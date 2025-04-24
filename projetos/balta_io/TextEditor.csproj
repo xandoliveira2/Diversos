@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType> <!-- Mantém Exe para gerar executável de console -->
+    <TargetFramework>net8.0</TargetFramework> <!-- Sem -windows se não usar WinForms/WPF -->
+  </PropertyGroup>
+
+</Project>
