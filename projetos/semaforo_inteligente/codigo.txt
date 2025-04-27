@@ -1,0 +1,199 @@
+void setup() {
+  pinMode(2, OUTPUT); //red up
+  pinMode(3, OUTPUT); //red right
+  pinMode(4, OUTPUT); //red down
+  pinMode(5, OUTPUT); //red left
+  pinMode(6, OUTPUT); //yellow up
+  pinMode(7, OUTPUT); //yellow right
+  pinMode(8, OUTPUT); //yellow down
+  pinMode(9, OUTPUT); //yellow left
+  pinMode(10, OUTPUT); //green up
+  pinMode(11, OUTPUT); //green right
+  pinMode(12, OUTPUT); //green down
+  pinMode(13, OUTPUT); //green left
+
+
+    // Inicia a comunicação serial
+  Serial.begin(9600);
+
+  // Configura os pinos do sensor
+  pinMode(22, OUTPUT); // semaforo de cima 
+  pinMode(23, INPUT); // semaforo de cima
+  pinMode(24, OUTPUT); // semaforo da direita
+  pinMode(25, INPUT); // semaforo de direita
+  pinMode(26, OUTPUT); // semaforo de baixo
+  pinMode(27, INPUT); // semaforo de baixo
+  pinMode(28, OUTPUT); // semaforo da esquerda
+  pinMode(29, INPUT); // semaforo da esquerda
+
+}
+
+int verificarDistancia(int semaforo) {
+  long duration;
+  long distance;
+  int echoPin = 0;
+  // Gera um pulso de 10 microsegundos no pino trig
+  if(semaforo == 1)
+  {
+      digitalWrite(22, LOW);
+      delayMicroseconds(2);
+      digitalWrite(22, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(22, LOW);
+      echoPin = 23;
+  }
+  else if (semaforo == 2)
+  {
+      digitalWrite(24, LOW);
+      delayMicroseconds(2);
+      digitalWrite(24, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(24, LOW);
+      echoPin = 25;
+  }
+  else if (semaforo == 3)
+  {
+      digitalWrite(26, LOW);
+      delayMicroseconds(2);
+      digitalWrite(26, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(26, LOW);
+      echoPin = 27;
+  }
+  else if (semaforo == 4)
+  {
+      digitalWrite(28, LOW);
+      delayMicroseconds(2);
+      digitalWrite(28, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(28, LOW);
+      echoPin = 29;
+  }
+  
+  // Lê o tempo que o eco leva para voltar
+  duration = pulseIn(echoPin, HIGH);
+  
+  // Calcula a distância (em centímetros)
+  distance = duration * 0.0344 / 2;
+  
+  // Se a distância estiver dentro de um intervalo razoável, considera como 'encontrado'
+  if (distance > 0 && distance < 50) {
+    return 1;  // Se encontrou algo
+  } else {
+    return 0;  // Se não encontrou nada
+  }
+}
+
+void comecoLoop()
+{
+  digitalWrite(2, HIGH);
+  digitalWrite(3, HIGH);
+  digitalWrite(4, HIGH);
+  digitalWrite(5, HIGH);
+  digitalWrite(6, LOW);
+  digitalWrite(7, LOW);
+  digitalWrite(8, LOW);
+  digitalWrite(9, LOW);
+  digitalWrite(10, LOW);
+  digitalWrite(11, LOW);
+  digitalWrite(12, LOW);
+  digitalWrite(13, LOW);
+}
+
+void loop() {
+  
+  int sinalUp = verificarDistancia(1);
+  int sinalRight = verificarDistancia(2);
+  int sinalDown = verificarDistancia(3);
+  int sinalLeft = verificarDistancia(4);
+  
+  comecoLoop();
+
+  if(sinalUp == 1)
+  {
+    while(sinalUp == 1 && sinalRight == 0 && sinalDown == 0 && sinalLeft == 0 )
+    {
+        sinalUp = verificarDistancia(1);
+        sinalRight = verificarDistancia(2);
+        sinalDown = verificarDistancia(3);
+        sinalLeft = verificarDistancia(4);
+        digitalWrite(2, LOW);
+        digitalWrite(10, HIGH);    
+        delay(5000);  
+    }
+    digitalWrite(2, LOW);
+    digitalWrite(10, HIGH);
+    delay(10000);
+    digitalWrite(10, LOW);
+    digitalWrite(6, HIGH);
+    delay(5000);
+    digitalWrite(6, LOW);
+    digitalWrite(2, HIGH);
+  }
+  if(sinalRight == 1)
+  {
+    while(sinalUp == 0 && sinalRight == 1 && sinalDown == 0 && sinalLeft == 0 )
+    {
+        sinalUp = verificarDistancia(1);
+        sinalRight = verificarDistancia(2);
+        sinalDown = verificarDistancia(3);
+        sinalLeft = verificarDistancia(4);
+        digitalWrite(3, LOW);
+        digitalWrite(11, HIGH);    
+        delay(5000);  
+    }
+    digitalWrite(3, LOW);
+    digitalWrite(11, HIGH);
+    delay(10000);
+    digitalWrite(11, LOW);
+    digitalWrite(7, HIGH);
+    delay(5000);
+    digitalWrite(7, LOW);
+    digitalWrite(3, HIGH);
+  }
+  if(sinalDown == 1)
+  {
+    while(sinalUp == 0 && sinalRight == 0 && sinalDown == 1 && sinalLeft == 0 )
+    {
+        sinalUp = verificarDistancia(1);
+        sinalRight = verificarDistancia(2);
+        sinalDown = verificarDistancia(3);
+        sinalLeft = verificarDistancia(4);
+        digitalWrite(4, LOW);
+        digitalWrite(12, HIGH);    
+        delay(5000);  
+    }
+    digitalWrite(4, LOW);
+    digitalWrite(12, HIGH);
+    delay(10000);
+    digitalWrite(12, LOW);
+    digitalWrite(8, HIGH);
+    delay(5000);
+    digitalWrite(8, LOW);
+    digitalWrite(4, HIGH);
+  }
+  if(sinalLeft == 1)
+  {
+    while(sinalUp == 0 && sinalRight == 0 && sinalDown == 0 && sinalLeft == 1 )
+    {
+        sinalUp = verificarDistancia(1);
+        sinalRight = verificarDistancia(2);
+        sinalDown = verificarDistancia(3);
+        sinalLeft = verificarDistancia(4);
+        digitalWrite(5, LOW);
+        digitalWrite(13, HIGH);    
+        delay(5000);  
+    }
+    digitalWrite(5, LOW);
+    digitalWrite(13, HIGH);
+    delay(10000);
+    digitalWrite(13, LOW);
+    digitalWrite(9, HIGH);
+    delay(5000);
+    digitalWrite(9, LOW);
+    digitalWrite(5, HIGH);
+  }
+
+}
+
+
