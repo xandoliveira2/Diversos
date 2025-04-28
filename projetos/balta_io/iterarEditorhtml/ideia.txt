@@ -1,0 +1,22 @@
+proposta do projeto:
+
+criar um 'editor de texto html', oque isso significa? ele quer fazer modificações de html em texto e ser exibido, então por exemplo:
+"""
+esse é meu <strong> Texto </strong> em negrito
+"""
+
+e dar alguma maneira de converter isso para que contenha Negrito
+
+Ideia para 'minha melhoria' -> 
+
+criar algo com windows forms onde:
+
+você tem 3 opcoes:
+abrir para visualizar -> opcao para exibir sem as demarcacoes (</strong> <sup> <i> [ai vai de quanto eu estiver empenhado em melhorar isso kkk]) com o efeito aplicado
+
+abrir para editar -> opcao para exibir com as demarcacoes
+
+criar um arquivo do 0 -> dispensa comentários né? '-'
+
+
+
