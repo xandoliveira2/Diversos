@@ -197,3 +197,239 @@ void loop() {
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+void setup() {
+  pinMode(2, OUTPUT); //red up
+  pinMode(3, OUTPUT); //red right
+  pinMode(4, OUTPUT); //red down
+  pinMode(5, OUTPUT); //red left
+  pinMode(6, OUTPUT); //yellow up
+  pinMode(7, OUTPUT); //yellow right
+  pinMode(8, OUTPUT); //yellow down
+  pinMode(9, OUTPUT); //yellow left
+  pinMode(10, OUTPUT); //green up
+  pinMode(11, OUTPUT); //green right
+  pinMode(12, OUTPUT); //green down
+  pinMode(13, OUTPUT); //green left
+
+  
+
+
+    // Inicia a comunicação serial
+  Serial.begin(9600);
+
+  // Configura os pinos do sensor
+  pinMode(22, OUTPUT); // semaforo de cima 
+  pinMode(23, INPUT); // semaforo de cima
+  pinMode(24, OUTPUT); // semaforo da direita
+  pinMode(25, INPUT); // semaforo de direita
+  pinMode(26, OUTPUT); // semaforo de baixo
+  pinMode(27, INPUT); // semaforo de baixo
+  pinMode(28, OUTPUT); // semaforo da esquerda
+  pinMode(29, INPUT); // semaforo da esquerda
+
+  // Botões dos pedestres
+pinMode(30, INPUT_PULLUP);
+pinMode(31, INPUT_PULLUP);
+pinMode(32, INPUT_PULLUP);
+pinMode(33, INPUT_PULLUP);
+
+
+// LEDs pedestres (agrupado já q todos vão ter o msm sinal)
+pinMode(34, OUTPUT); // LED verde para todos os pedestres
+pinMode(35, OUTPUT); // LED vermelho para todos os pedestres
+
+
+}
+
+void modoPedestre() {
+  // Garante que o vermelho dos carros esteja aceso (carros parados)
+  digitalWrite(2, HIGH);
+  digitalWrite(3, HIGH);
+  digitalWrite(4, HIGH);
+  digitalWrite(5, HIGH);
+
+  // Apaga todos os verdes e amarelos dos carros
+  for (int i = 6; i <= 13; i++) {
+    digitalWrite(i, LOW);
+  }
+
+  // Pedestres começam com vermelho (sempre)
+  digitalWrite(34, LOW);  // LED verde pedestre desligado
+  digitalWrite(35, HIGH); // LED vermelho pedestre ligado
+
+  // Espera curta antes de liberar a travessia
+  delay(1000);
+
+  // Libera travessia: verde acende, vermelho apaga
+  digitalWrite(35, LOW);  // vermelho OFF
+  digitalWrite(34, HIGH); // verde ON
+
+  delay(5000); // tempo de travessia
+
+  // Finaliza: volta para vermelho
+  digitalWrite(34, LOW);  // verde OFF
+  digitalWrite(35, HIGH); // vermelho ON
+}
+
+
+int verificarDistancia(int semaforo) {
+  long duration;
+  long distance;
+  int echoPin = 0;
+  // Gera um pulso de 10 microsegundos no pino trig
+  if(semaforo == 1)
+  {
+      digitalWrite(22, LOW);
+      delayMicroseconds(2);
+      digitalWrite(22, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(22, LOW);
+      echoPin = 23;
+  }
+  else if (semaforo == 2)
+  {
+      digitalWrite(24, LOW);
+      delayMicroseconds(2);
+      digitalWrite(24, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(24, LOW);
+      echoPin = 25;
+  }
+  else if (semaforo == 3)
+  {
+      digitalWrite(26, LOW);
+      delayMicroseconds(2);
+      digitalWrite(26, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(26, LOW);
+      echoPin = 27;
+  }
+  else if (semaforo == 4)
+  {
+      digitalWrite(28, LOW);
+      delayMicroseconds(2);
+      digitalWrite(28, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(28, LOW);
+      echoPin = 29;
+  }
+  
+  // Lê o tempo que o eco leva para voltar
+  duration = pulseIn(echoPin, HIGH);
+  
+  // Calcula a distância (em centímetros)
+  distance = duration * 0.0344 / 2;
+  
+  // Se a distância estiver dentro de um intervalo razoável, considera como 'encontrado'
+  if (distance > 0 && distance < 50) {
+    return 1;  // Se encontrou algo
+  } else {
+    return 0;  // Se não encontrou nada
+  }
+}
+
+void comecoLoop()
+{
+  digitalWrite(35, HIGH); // LED vermelho pedestre ligado
+  digitalWrite(2, HIGH);
+  digitalWrite(3, HIGH);
+  digitalWrite(4, HIGH);
+  digitalWrite(5, HIGH);
+  digitalWrite(6, LOW);
+  digitalWrite(7, LOW);
+  digitalWrite(8, LOW);
+  digitalWrite(9, LOW);
+  digitalWrite(10, LOW);
+  digitalWrite(11, LOW);
+  digitalWrite(12, LOW);
+  digitalWrite(13, LOW);
+}
+bool botaoPedestreAnterior[4] = {HIGH, HIGH, HIGH, HIGH};  // Estado anterior de cada botão
+bool pedidoPedestre = false;  // Variável que indica se o pedido foi feito
+
+// Função para verificar se algum botão de pedestre foi pressionado
+bool verificarBotaoPedestre() {
+  bool botaoPressionado = false;
+  
+  // Para cada botão, verificar se houve transição (de HIGH para LOW)
+  for (int i = 30; i <= 33; i++) {
+    bool estadoAtual = digitalRead(i) == LOW;  // Verifica se o botão foi pressionado (LOW)
+    
+    if (estadoAtual && botaoPedestreAnterior[i - 30] == HIGH) {
+      botaoPressionado = true;  // Detecta a transição
+      botaoPedestreAnterior[i - 30] = LOW;  // Atualiza o estado do botão
+    }
+    else if (!estadoAtual) {
+      botaoPedestreAnterior[i - 30] = HIGH;  // Atualiza o estado para HIGH se o botão foi solto
+    }
+  }
+
+  return botaoPressionado;
+}
+
+void loop() {
+  // Se algum botão foi pressionado, mudar pedidoPedestre para true
+  if (verificarBotaoPedestre()) {
+    pedidoPedestre = true;  // Pedido de pedestre foi feito
+  }
+
+  // Quando pedidoPedestre for true, chama o modo pedestre
+  if (pedidoPedestre) {
+    modoPedestre();
+    pedidoPedestre = false; // Reseta para não ficar pedindo sempre
+  }
+
+  // Verifica sensores de distância e controla os semáforos
+  int sinalUp = verificarDistancia(1);
+  int sinalRight = verificarDistancia(2);
+  int sinalDown = verificarDistancia(3);
+  int sinalLeft = verificarDistancia(4);
+
+  comecoLoop(); // Reseta todos os sinais
+
+  if (sinalUp == 1) {
+    digitalWrite(2, LOW);
+    digitalWrite(10, HIGH);
+    delay(10000);
+    digitalWrite(10, LOW);
+    digitalWrite(6, HIGH);
+    delay(5000);
+    digitalWrite(6, LOW);
+    digitalWrite(2, HIGH);
+  } else if (sinalRight == 1) {
+    digitalWrite(3, LOW);
+    digitalWrite(11, HIGH);
+    delay(10000);
+    digitalWrite(11, LOW);
+    digitalWrite(7, HIGH);
+    delay(5000);
+    digitalWrite(7, LOW);
+    digitalWrite(3, HIGH);
+  } else if (sinalDown == 1) {
+    digitalWrite(4, LOW);
+    digitalWrite(12, HIGH);
+    delay(10000);
+    digitalWrite(12, LOW);
+    digitalWrite(8, HIGH);
+    delay(5000);
+    digitalWrite(8, LOW);
+    digitalWrite(4, HIGH);
+  } else if (sinalLeft == 1) {
+    digitalWrite(5, LOW);
+    digitalWrite(13, HIGH);
+    delay(10000);
+    digitalWrite(13, LOW);
+    digitalWrite(9, HIGH);
+    delay(5000);
+    digitalWrite(9, LOW);
+    digitalWrite(5, HIGH);
+  }
+}
+
+
