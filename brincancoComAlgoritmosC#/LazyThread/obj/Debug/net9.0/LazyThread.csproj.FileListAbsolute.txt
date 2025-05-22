@@ -1,0 +1,15 @@
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\bin\Debug\net9.0\LazyThread.exe
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\bin\Debug\net9.0\LazyThread.deps.json
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\bin\Debug\net9.0\LazyThread.runtimeconfig.json
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\bin\Debug\net9.0\LazyThread.dll
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\bin\Debug\net9.0\LazyThread.pdb
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\obj\Debug\net9.0\LazyThread.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\obj\Debug\net9.0\LazyThread.AssemblyInfoInputs.cache
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\obj\Debug\net9.0\LazyThread.AssemblyInfo.cs
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\obj\Debug\net9.0\LazyThread.csproj.CoreCompileInputs.cache
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\obj\Debug\net9.0\LazyThread.sourcelink.json
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\obj\Debug\net9.0\LazyThread.dll
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\obj\Debug\net9.0\refint\LazyThread.dll
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\obj\Debug\net9.0\LazyThread.pdb
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\obj\Debug\net9.0\LazyThread.genruntimeconfig.cache
+C:\Users\aoliveira\Desktop\Diversos\brincancoComAlgoritmosC#\LazyThread\obj\Debug\net9.0\ref\LazyThread.dll
